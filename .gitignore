@@ -1,0 +1,8 @@
+*.pyc
+*__pycache
+*/migrations/
+**/migrations/
+!*/migrations/__init__.py
+!**/migrations/__init__.py
+media/*
+secrets.json
