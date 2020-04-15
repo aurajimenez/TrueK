@@ -1,4 +1,7 @@
 from django.db import models
+from datetime import date
+from apps.usuario.models import User
+from apps.objeto.models import Service
 
 # Create your models here.
 class Exchange(model.Model):
@@ -7,8 +10,8 @@ class Exchange(model.Model):
 	item_offered_by_receptor = models.ForeignKey(Service, on_delete = models.CASCADE)
 	receiver = models.ForeignKey(User, on_delete = models.CASCADE)
 	state = models.EmailField(max_lenght=254)
-	donation_date = models.DateField()
-	acceptance_date = models.DateField()
+	donation_date = models.DateField(verbose_name= "Fecha de solicitud de intercambio", blank=False, null=False)
+	acceptance_date = models.DateField(verbose_name= "Fecha de aceptación de intercambio", blank=False, null=False)
 
 
 	"""docstring for Exchange"""
