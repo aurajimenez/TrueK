@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def Registrar(request):
+	return render(request, "registrar_donacion.html")

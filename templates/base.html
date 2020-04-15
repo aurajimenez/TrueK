@@ -1,16 +1,11 @@
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE HTML>
-<!--
-	Road Trip by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
 <html>
 	<head>
-		{% block title %}<title>Road Trip by TEMPLATED</title>{% endblock %}
+		<title>{% block title %}Road Trip by TEMPLATED{% endblock %}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="{% static '..static/templated-roadtrip/assets/css/main.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
 	{% block css %}
     {% endblock css%}
     {{ form.media }}	
@@ -18,20 +13,20 @@
 
 {% block body %}
 	<body>
-
+{% static 'css/main.css' %}
 		<!-- Header -->
 		{%  block barra_inicial %}
 			<header id="header">
-				<div class="logo"><a href="{% static 'static/templated-roadtrip/index.html' %}">Road Trip <span>by TEMPLATED</span></a></div>
+				<div class="logo"><a href="{% static '/index.html' %}">Road Trip <span>by TEMPLATED</span></a></div>
 				<a href="#menu"><span>Menu</span></a>
 			</header>
 
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="{% static 'static/templated-roadtrip/index.html' %}">Home</a></li>
-					<li><a href="{% static 'static/templated-roadtrip/generic.html' %}">Generic</a></li>
-					<li><a href="{% static 'static/templated-roadtrip/elements.html' %}">Elements</a></li>
+					<li><a href="{% static 'index.html' %}">Home</a></li>
+					<li><a href="{% static 'generic.html' %}">Generic</a></li>
+					<li><a href="{% static 'elements.html' %}">Elements</a></li>
 				</ul>
 			</nav>
         {% endblock %}
@@ -62,7 +57,7 @@
 							<p>Scelerisque enim mi curae erat ultricies lobortis donec velit in per cum consectetur purus a enim platea vestibulum lacinia et elit ante scelerisque vestibulum. At urna condimentum sed vulputate a duis in senectus ullamcorper lacus cubilia consectetur odio proin sociosqu a parturient nam ac blandit praesent aptent. Eros dignissim mus mauris a natoque ad suspendisse nulla a urna in tincidunt tristique enim arcu litora scelerisque eros suspendisse.</p>
 						</div>
 						<footer>
-							<a href="{% static 'static/templated-roadtrip/generic.html' %}" class="button alt">Learn More</a>
+							<a href="{% static 'generic.html' %}" class="button alt">Learn More</a>
 						</footer>
 					</article>
 				</div>
@@ -81,7 +76,7 @@
 							<p>Scelerisque enim mi curae erat ultricies lobortis donec velit in per cum consectetur purus a enim platea vestibulum lacinia et elit ante scelerisque vestibulum. At urna condimentum sed vulputate a duis in senectus ullamcorper lacus cubilia consectetur odio proin sociosqu a parturient nam ac blandit praesent aptent. Eros dignissim mus mauris a natoque ad suspendisse nulla a urna in tincidunt tristique enim arcu litora scelerisque eros suspendisse.</p>
 						</div>
 						<footer>
-							<a href="{% static 'static/templated-roadtrip/generic.html' %}" class="button alt">Learn More</a>
+							<a href="{% static 'generic.html' %}" class="button alt">Learn More</a>
 						</footer>
 					</article>
 				</div>
@@ -97,10 +92,10 @@
 							<p>11.11.2016</p>
 						</header>
 						<div class="content">
-							<p>Scelerisque enim mi curae erat ultricies lobortis donec velit in per cum consectetur purus a enim platea vestibulum lacinia et elit ante scelerisque vestibulum. At urna condimentum sed vulputate a duis in senectus ullamcorper lacus cubilia consectetur odio proin sociosqu a parturient nam ac blandit praesent aptent. Eros dignissim mus mauris a natoque ad suspendisse nulla a urna in tincidunt tristique enim arcu litora scelerisque eros suspendisse.</p>
+							<p>Scelerisque enim mi curae erat ultricies lobortis donec velit in per cum consectetur purus a enim platea vestibulum lacinia et elit ante scelerisque vestibulum. At urna condimentum sed vulputate a duis in senectus ullamcorper lacus cubilia consectetur odio proin sociosqu a parturient nam ac blandit praesent aptent. Eros dignissim mus mauris a natoque ad suspendisse nulla a urna in tincidunt tristique enim arcu litora scelerisque eros suspendissegg.</p>
 						</div>
 						<footer>
-							<a href="{% static 'static/templated-roadtrip/generic.html' %}" class="button alt">Learn More</a>
+							<a href="{% static 'generic.html' %}" class="button alt">Learn More</a>
 						</footer>
 					</article>
 				</div>
@@ -108,7 +103,7 @@
 			</section>
 
 		<!-- Four -->
-			<section id="four" class="wrapper post bg-img" data-bg="banner3.jpg">
+			<section id="four" class="wrapper post bg-img" data-bg="{% static 'img/banner3.jpg' %}">
 				<div class="inner">
 					<article class="box">
 						<header>
@@ -119,7 +114,7 @@
 							<p>Scelerisque enim mi curae erat ultricies lobortis donec velit in per cum consectetur purus a enim platea vestibulum lacinia et elit ante scelerisque vestibulum. At urna condimentum sed vulputate a duis in senectus ullamcorper lacus cubilia consectetur odio proin sociosqu a parturient nam ac blandit praesent aptent. Eros dignissim mus mauris a natoque ad suspendisse nulla a urna in tincidunt tristique enim arcu litora scelerisque eros suspendisse.</p>
 						</div>
 						<footer>
-							<a href="{% static 'static/templated-roadtrip/generic.html' %}" class="button alt">Learn More</a>
+							<a href="{% static 'generic.html' %}" class="button alt">Learn More</a>
 						</footer>
 					</article>
 				</div>
@@ -164,12 +159,12 @@
 			</footer>
 {% endblock contenido %}
 		<!-- Scripts -->
-			<script src="{% static 'static/templated-roadtrip/assets/js/jquery.min.js' %}"></script>
-			<script src="{% static 'static/templated-roadtrip/assets/js/jquery.scrolly.min.js' %}"></script>
-			<script src="{% static 'static/templated-roadtrip/assets/js/jquery.scrollex.min.js' %}"></script>
-			<script src="{% static 'static/templated-roadtrip/assets/js/skel.min.js' %}"></script>
-			<script src="{% static 'static/templated-roadtrip/assets/js/util.js' %}"></script>
-			<script src="{% static 'static/templated-roadtrip/assets/js/main.js' %}"></script>
+			<script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'js/skel.min.js' %}"></script>
+			<script src="{% static 'js/util.js' %}"></script>
+			<script src="{% static 'js/main.js' %}"></script>
     {% block js %}
     {% endblock js %}
 
