@@ -5,6 +5,6 @@ class Usuario(models.Model):
 	telefono = models.CharField(verbose_name="Teléfono", max_length=50)
 	localizacion = models.CharField(verbose_name="Localización", max_length=100)
 	email = models.EmailField(max_length=254)
-	photo = models.ImageField()
+	foto = models.ImageField()
 
 		

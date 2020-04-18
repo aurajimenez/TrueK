@@ -1,11 +1,22 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 
 {% block title %}Registrar Donación {% endblock %}
-
+{%  block barra_inicial %} {% endblock %}
+{% block barra_busqueda %} {% endblock barra_busqueda %}
 {% block contenido %}
-
-<body>
+<section class="register">
+	<section class="register__container">
+		<h3>Realizar donación</h3>
+		<form class="span6">
+			<input class="input" type="text" placeholder="Donador">
+			<input class="input" type="text" placeholder="Objecto o servicio">
+			<input class="input" type="text" placeholder="Receptor">
+			<input class="input" type="text" placeholder="Estado">
+			<input class="input" type="text" placeholder="Fecha Donación">
+			<button class="button">Donar</button>
 	
-</body>
-
+        </form>
+</section>
+</section>
 {% endblock %}
+

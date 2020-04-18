@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Donaciones {% endblock %}
+{%  block barra_inicial %} {% endblock %}
+{% block contenido %}
+<section class="donaciones">
+	<section class="donaciones__container">
+		<h3>Donaciones</h3>
+		<p> Donador: {{ donador }}</p>
+		<p> Objecto o servicio donado: {{ objecto_servicio }}</p>
+		<p> Beneficiado: {{ receptor }}</p>
+		<p> Estado de la donación: {{ estado }}</p>
+		<p> Fecha de realización de la donación: {{ fecha_donacion }}</p>
+		<p> Fecha de aceptación/recepción de la donación: {{ fecha_aceptacion }}</p>
+    </section>
+</section>
+{% endblock %}
+
