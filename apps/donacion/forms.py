@@ -3,6 +3,12 @@ from django import forms
 from .models import Donacion
 
 class RegistrarDonacionForm(forms.ModelForm):
+	donador = forms.CharField()
+	objecto_servicio = forms.CharField(required=False)
+	receptor = forms.CharField(required=False)
+	estado = forms.CharField(required=False)
+	fecha_donacion = forms.DateField(required=False)
+	fecha_aceptacion = forms.DateField(required=False)
 
 
 	class Meta:
