@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 
+from .models import Usuario
 from .forms import RegistrarUsuarioForm
 
 def Registrar(request):

@@ -3,3 +3,13 @@
 {% block title %}Registrar Usuario {% endblock %}
 {%  block barra_inicial %} {% endblock %}
 {% block barra_busqueda %} {% endblock barra_busqueda %}
+{% block contenido %}
+{% for usuario in usuarios %}
+<section>
+<ul>
+	<li> {{ usuario.nombre}} </li>
+	<li> {{ usuario.telefono}} </li>
+</ul>
+</section>
+{% endfor %}
+{% endblock %}
