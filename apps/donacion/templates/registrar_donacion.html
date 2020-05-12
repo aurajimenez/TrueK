@@ -5,6 +5,10 @@
 {% block barra_busqueda %} {% endblock barra_busqueda %}
 {% block contenido %}
 <body>
+<h2>Realiza tu donación</h2>	
+<section>
+
+
 		<form action="" method="post">{% csrf_token %}
         <table>
             {{ form.as_table }}
@@ -12,6 +16,8 @@
 		<input type="submit" value="Enviar">
 	
         </form>
+        </section>
+		
 </body>
 {% endblock %}
 
