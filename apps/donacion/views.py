@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from .forms import RegistrarDonacionForm
+from .models import Donacion
 
 def Registrar(request):
 	if request.method == 'POST':
@@ -13,4 +14,6 @@ def Registrar(request):
 
 
 def Listar(request):
-	return render(request, "listar_donaciones.html")
+	donaciones = Donacion.objects.all()
+	print(donaciones)
+	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
