@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .forms import RegistrarDonacionForm
 from .models import Donacion
@@ -7,7 +7,8 @@ def Registrar(request):
 	if request.method == 'POST':
 		form = RegistrarDonacionForm(request.POST)
 		if form.is_valid():
-			return HttpResponseRedirect('/donacion/listar/')
+			form.save()
+			return redirect('donacion:listar')
 	else:
 		form = RegistrarDonacionForm()
 	return render(request, "registrar_donacion.html", {'form': form})
