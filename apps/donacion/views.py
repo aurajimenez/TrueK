@@ -11,7 +11,7 @@ def Registrar(request):
 			return redirect('donacion:listar')
 	else:
 		form = RegistrarDonacionForm()
-	return render(request, "registrar_donacion.html", {'form': form})
+	return render(request, 'registrar_donacion.html', {'form': form})
 
 
 def Listar(request):

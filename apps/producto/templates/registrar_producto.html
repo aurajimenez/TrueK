@@ -1,0 +1,22 @@
+{% extends "base1.html" %}
+
+{% block title %}Registrar Producto {% endblock %}
+{%  block barra_inicial %} {% endblock %}
+{% block barra_busqueda %} {% endblock barra_busqueda %}
+{% block contenido %}
+<body>
+<h2>Registra tu producto</h2>	
+<section>
+
+
+		<form action="" method="post">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+		<input type="submit" value="Enviar">
+	
+        </form>
+        </section>
+		
+</body>
+{% endblock %}
