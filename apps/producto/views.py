@@ -14,4 +14,5 @@ def Registrar(request):
 	return render(request,'registrar_producto.html',{'form': form})
 
 def Listar(request):
-	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
+	productos = Producto.objects.all()
+	return render(request, "listar_productos.html", {'productos':productos})
