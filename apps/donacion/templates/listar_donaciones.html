@@ -9,12 +9,29 @@
 			<h3>Donaciones</h3>
 			{% for donacion in donaciones %}
 				{% if donaciones %}
+				<section>
+			<div class="container-fluid">
+            	<div class="row-fluid">
+					<div class="span4">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon">
+									<i class="icon-user"></i>
+								</span>
+								<h5>{{ donacion.id|upper }}</h5>
+							</div>
+							<div class="widget-content nopadding">
 					<p> Donador: {{ donacion.donador }}</p>
 					<p> Objecto o servicio donado: {{ donacion.objecto_servicio }}</p>
 					<p> Beneficiado: {{ donacion.receptor }}</p>
 					<p> Estado de la donación: {{ donacion.estado }}</p>
 					<p> Fecha de realización de la donación: {{ donacion.fecha_donacion }}</p>
-					<p> Fecha de aceptación/recepción de la donación: {{ donacion.fecha_aceptacion }}</p>
+					<p> Fecha de aceptación/recepción de la donación: {{ donacion.fecha_aceptacion }}</p>							</div>
+						</div>
+					</div>
+
+	</div>	</div>
+</section>
 				{% endif %}
 				{% if not donaciones %}
 					<p>No hay donaciones, tacaño!!!</p>
