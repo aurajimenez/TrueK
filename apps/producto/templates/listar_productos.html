@@ -6,7 +6,29 @@
 {% block contenido %}
 <body>
 {% for producto in productos%}
-<ul>{{ producto.nombre }}</ul>
+<section>
+			<div class="container-fluid">
+            	<div class="row-fluid">
+					<div class="span4">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon">
+									<i class="icon-user"></i>
+								</span>
+								<h5>{{ producto.nombre|upper }}</h5>
+							</div>
+							<div class="widget-content nopadding">
+
+								<p> descripcion: {{ producto.descripcion}} </p>
+								<p> etiquetas: {{ producto.etiquetas}} </p>
+								<p> estado: {{ producto.estado}} </p>
+
+							</div>
+						</div>
+					</div>
+
+	</div>	</div>
+</section>
 
 {% endfor %}
 {% endblock %}
