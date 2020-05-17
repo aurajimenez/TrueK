@@ -21,4 +21,4 @@ class RegistrarDonacionForm(forms.ModelForm):
 
 	class Meta:
 		model = Donacion
-		fields = ('donador', 'objecto_servicio', 'receptor', 'estado', 'fecha_aceptacion',)
+		fields = ('donador', 'objecto_servicio', 'receptor',)
