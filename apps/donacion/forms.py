@@ -5,8 +5,8 @@ from .models import Donacion
 import datetime
 
 class RegistrarDonacionForm(forms.ModelForm):
-	fecha_donacion = forms.DateField(widget= forms.DateInput(attrs={'placeholder': '__/__/____', 'class': 'date',}))
-	fecha_aceptacion = forms.DateField(widget= forms.DateInput(attrs={'placeholder': '__/__/____', 'class': 'date',}))
+	#fecha_donacion = forms.DateField(widget= forms.DateInput(attrs={'placeholder': '__/__/____', 'class': 'date',}))
+	#fecha_aceptacion = forms.DateField(widget= forms.DateInput(attrs={'placeholder': '__/__/____', 'class': 'date',}))
 
 	def clean(self):
 		cleaned_data = super().clean()
@@ -21,4 +21,4 @@ class RegistrarDonacionForm(forms.ModelForm):
 
 	class Meta:
 		model = Donacion
-		fields = ('donador', 'objecto_servicio', 'receptor', 'estado', 'fecha_donacion', 'fecha_aceptacion',)
+		fields = ('donador', 'objecto_servicio', 'receptor', 'estado', 'fecha_aceptacion',)

@@ -18,5 +18,5 @@ class Donacion(models.Model):
 	objecto_servicio = models.ForeignKey(Producto, on_delete = models.CASCADE)
 	receptor = models.ForeignKey(Usuario, related_name="donaciones_recibidas", on_delete=models.CASCADE)
 	estado = models.CharField(max_length=254, choices=ESTADOS)
-	fecha_donacion = models.DateField(verbose_name="Fecha de donación", blank=True, null=True)
+	fecha_donacion = models.DateField(verbose_name="Fecha de donación", default=date.today())
 	fecha_aceptacion = models.DateField(verbose_name="Fecha de aceptación", blank=True, null=True)
