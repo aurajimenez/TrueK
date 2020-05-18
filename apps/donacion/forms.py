@@ -22,3 +22,19 @@ class RegistrarDonacionForm(forms.ModelForm):
 	class Meta:
 		model = Donacion
 		fields = ('donador', 'objecto_servicio', 'receptor',)
+
+class ModificarDonacionForm(forms.ModelForm):
+
+	def clean(self):
+		cleaned_data = super().clean()
+		donador = cleaned_data.get("donador")
+		receptor = cleaned_data.get("receptor")
+
+		if donador == receptor:
+			mensaje = "El receptor no puede ser el mismo donador"
+			self.add_error('donador', mensaje)
+			self.add_error('receptor', mensaje)
+
+	class Meta:
+		model = Donacion
+		fields = ('objecto_servicio', 'receptor',)

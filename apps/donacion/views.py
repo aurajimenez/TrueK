@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from datetime import date, datetime
 
-from .forms import RegistrarDonacionForm
+from .forms import RegistrarDonacionForm, ModificarDonacionForm
 from .models import Donacion
 
 def Registrar(request):
@@ -14,6 +14,16 @@ def Registrar(request):
 	else:
 		form = RegistrarDonacionForm()
 	return render(request, 'registrar_donacion.html', {'form': form})
+
+def Modificar(request, donacion_id):
+	donacion = Donacion.objects.get(id=donacion_id)
+	form = ModificarDonacionForm(instance=donacion)
+	if request.method == "POST":
+		form = ModificarDonacionForm(request.POST, instance=donacion)
+		if form.is_valid():
+			donacion = form.save(commit=False)
+			donacion.save()
+	return render(request, 'registrar_donacion.html',{'form': form})
 
 
 def Listar(request):
