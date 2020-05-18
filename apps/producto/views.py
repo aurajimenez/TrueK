@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from .forms import RegistrarProductoForm
+from .forms import RegistrarProductoForm, ModificarProductoForm
 from .models import Producto
 
 def Registrar(request):
@@ -12,6 +12,16 @@ def Registrar(request):
 	else:
 		form = RegistrarProductoForm()
 	return render(request,'registrar_producto.html',{'form': form})
+
+def Modificar(request, producto_id):
+	producto = Producto.objects.get(id=producto_id)
+	form = ModificarProductoForm(instance=producto)
+	if request.method == "POST":
+		form = ModificarProductoForm(request.POST, instance=producto)
+		if form.is_valid():
+			producto = form.save(commit=False)
+			producto.save()
+	return render(request, 'registrar_producto.html',{'form': form})
 
 def Listar(request):
 	productos = Producto.objects.all()
