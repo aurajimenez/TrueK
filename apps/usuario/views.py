@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 
 from .models import Usuario
-from .forms import RegistrarUsuarioForm
+from .forms import RegistrarUsuarioForm, ModificarUsuarioForm
 
 def Registrar(request):
 	if request.method == 'POST':
@@ -14,6 +14,17 @@ def Registrar(request):
 	else:
 		form = RegistrarUsuarioForm()
 	return render(request, "registrar_usuario.html", {'form': form})
+
+def Modificar(request, usuario_id):
+	usuario = Usuario.objects.get(id=usuario_id)
+	form = ModificarUsuarioForm(instance=usuario)
+	if request.method == "POST":
+		form = ModificarUsuarioForm(request.POST, instance=usuario)
+		if form.is_valid():
+			usuario = form.save(commit=False)
+			form.save()
+	return render(request, 'registrar_usuario.html',{'form': form})
+
 
 def Listar(request):
 	usuarios = Usuario.objects.all()

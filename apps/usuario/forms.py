@@ -9,7 +9,12 @@ class RegistrarUsuarioForm(forms.ModelForm):
 	email = forms.EmailField(required=True)
 	photo = forms.ImageField(required=False)
 
-
 	class Meta:
 		model = Usuario
 		fields = ('nombre', 'telefono', 'localizacion', 'email', 'photo',)
+
+class ModificarUsuarioForm(forms.ModelForm):
+
+	class Meta:
+		model = Usuario
+		fields = ('nombre', 'telefono', 'localizacion', 'email',)
