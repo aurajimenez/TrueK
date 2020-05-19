@@ -1,0 +1,26 @@
+{% extends "base1.html" %}
+
+{% block title %}Modificar Usuario {% endblock %}
+{%  block barra_inicial %} {% endblock %}
+{% block barra_busqueda %} {% endblock barra_busqueda %}
+{% block contenido %}
+<body>
+       
+<div class="span6">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Registrar usuario</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form action="#" method="post" class="form-horizontal"><div class="control-group">{% csrf_token %}
+</div>
+           <div class="form-actions">{{ form }}
+               <input type="submit" value="Enviar">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</body>
+{% endblock %}
+

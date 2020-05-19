@@ -5,7 +5,7 @@ from .models import Producto
 
 def Registrar(request):
 	if request.method == 'POST':
-		form = RegistrarProductoForm(request.POST)
+		form = RegistrarProductoForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 			return redirect('producto:listar')
@@ -21,7 +21,8 @@ def Modificar(request, producto_id):
 		if form.is_valid():
 			producto = form.save(commit=False)
 			producto.save()
-	return render(request, 'registrar_producto.html',{'form': form})
+			return redirect('producto:listar')
+	return render(request, 'modificar_producto.html',{'form': form})
 
 def Listar(request):
 	productos = Producto.objects.all()

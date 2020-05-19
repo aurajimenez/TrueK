@@ -7,7 +7,7 @@ from .forms import RegistrarUsuarioForm, ModificarUsuarioForm
 
 def Registrar(request):
 	if request.method == 'POST':
-		form = RegistrarUsuarioForm(request.POST)
+		form = RegistrarUsuarioForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 			return redirect('usuario:listar')
@@ -23,7 +23,8 @@ def Modificar(request, usuario_id):
 		if form.is_valid():
 			usuario = form.save(commit=False)
 			form.save()
-	return render(request, 'registrar_usuario.html',{'form': form})
+			return redirect('usuario:listar')
+	return render(request, 'modificar_usuario.html',{'form': form})
 
 
 def Listar(request):

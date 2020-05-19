@@ -23,7 +23,8 @@ def Modificar(request, donacion_id):
 		if form.is_valid():
 			donacion = form.save(commit=False)
 			donacion.save()
-	return render(request, 'registrar_donacion.html',{'form': form})
+			return redirect('donacion:listar')
+	return render(request, 'modificar_donacion.html',{'form': form})
 
 
 def Listar(request):
