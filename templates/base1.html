@@ -49,25 +49,22 @@
 {%  block barra_inicial %}
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a><ul>
     <li class="active"><a href="index.html' %}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li> <a href="{% url 'producto:listar'%}"><i class="icon icon-signal"></i> <span>Productos</span></a> </li>
-    <li> <a href="{% url 'donacion:listar'%}"><i class="icon icon-inbox"></i> <span>Donaciones</span></a> </li>
-    <li><a href="{% static 'tables.html' %}"><i class="icon icon-th"></i> <span>Tables</span></a></li>
-    <li><a href="{% static 'grid.html' %}"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
-    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Donaciones</span> <span class="label label-important">3</span></a>
       <ul>
-        <li><a href="{% static 'form-common.html' %}">Basic Form</a></li>
-        <li><a href="{% static 'form-validation.html' %}">Form with Validation</a></li>
-        <li><a href="{% static 'form-wizard.html' %}">Form with Wizard</a></li>
+        <li><a href="{% url 'donacion:registrar'%}">Registrar</a></li>
+        <li><a href="{% url 'donacion:listar'%}">Listar</a></li>
       </ul>
     </li>
-    <li><a href="{% static 'buttons.html' %}"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
-    <li><a href="{% static 'interface.html' %}"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
-    <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">4</span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> <span class="label label-important">3</span></a>
       <ul>
-        <li><a href="{% static 'index2.html' %}">Dashboard2</a></li>
-        <li><a href="{% static 'gallery.html' %}">Gallery</a></li>
-        <li><a href="{% static 'calendar.html' %}">Calendar</a></li>
-        <li><a href="{% static 'chat.html' %}">Chat option</a></li>
+        <li><a href="{% url 'producto:registrar'%}">Registrar</a></li>
+        <li><a href="{% url 'producto:listar'%}">Listar</a></li>
+      </ul>
+    </li>
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Intercambios</span> <span class="label label-important">3</span></a>
+      <ul>
+        <li><a href="{% url 'intercambio:registrar'%}">Registrar</a></li>
+        <li><a href="{% url 'intercambio:listar'%}">Listar</a></li>
       </ul>
     </li>
   </ul>
