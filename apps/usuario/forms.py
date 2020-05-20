@@ -7,14 +7,21 @@ class RegistrarUsuarioForm(forms.ModelForm):
 	telefono = forms.CharField(required=True)
 	localizacion = forms.CharField(required=True)
 	email = forms.EmailField(required=True)
+	contrasena = forms.CharField(required=True)
 	photo = forms.ImageField(required=False)
 
 	class Meta:
 		model = Usuario
-		fields = ('nombre', 'telefono', 'localizacion', 'email', 'photo',)
+		fields = ('nombre', 'telefono', 'localizacion', 'email', 'photo', 'contrasena',)
 
 class ModificarUsuarioForm(forms.ModelForm):
 
 	class Meta:
 		model = Usuario
 		fields = ('nombre', 'telefono', 'localizacion', 'email',)
+
+class LoginUsarioForm(forms.ModelForm):
+
+	class Meta:
+		model = Usuario
+		fields = ('email','contrasena',)

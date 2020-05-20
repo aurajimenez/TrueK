@@ -1,0 +1,16 @@
+{% extends "base1.html" %}
+
+{% block title %}Login {% endblock %}
+{%  block barra_inicial %} {% endblock barra_inicial %}
+{% block barra_busqueda %} {% endblock barra_busqueda %}
+{% block contenido %}
+        <div  >            
+<form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Login</button>
+</form>
+            
+        </div>
+
+{% endblock %}
