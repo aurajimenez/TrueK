@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'bootstrap4'
+    'bootstrap4',
 
 
     'apps.usuario',
@@ -137,3 +137,5 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = 'media/'
 MEDIA_URL = 'http://localhost:8000/media/'
+
+AUTH_USER_MODEL = 'usuario.usuario'

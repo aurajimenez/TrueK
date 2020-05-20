@@ -3,25 +3,23 @@ from django import forms
 from .models import Usuario
 
 class RegistrarUsuarioForm(forms.ModelForm):
-	nombre = forms.CharField(required=True)
 	telefono = forms.CharField(required=True)
 	localizacion = forms.CharField(required=True)
-	email = forms.EmailField(required=True)
-	contrasena = forms.CharField(required=True)
 	photo = forms.ImageField(required=False)
+
+	username = forms.CharField(required=True)
+	password = forms.CharField(required=True, widget=forms.PasswordInput)
 
 	class Meta:
 		model = Usuario
-		fields = ('nombre', 'telefono', 'localizacion', 'email', 'photo', 'contrasena',)
+		fields = ('username', 'first_name', 'last_name', 'email', 'password', 'telefono','localizacion','photo',)
 
 class ModificarUsuarioForm(forms.ModelForm):
 
 	class Meta:
 		model = Usuario
-		fields = ('nombre', 'telefono', 'localizacion', 'email',)
+		fields = ('username', 'first_name', 'last_name', 'email', 'password', 'telefono','localizacion','photo',)
 
 class LoginUsarioForm(forms.ModelForm):
-
-	class Meta:
-		model = Usuario
-		fields = ('email','contrasena',)
+	username = forms.CharField(widget=forms.TextInput)
+	password = forms.CharField(widget=forms.TextInput)
