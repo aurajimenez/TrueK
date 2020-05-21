@@ -3,13 +3,18 @@ from django.shortcuts import render, redirect
 from datetime import date, datetime
 
 from .forms import RegistrarDonacionForm, ModificarDonacionForm
-from .models import Donacion
+from .models import Donacion, Producto
 
 def Registrar(request):
 	if request.method == 'POST':
-		form = RegistrarDonacionForm(request.POST)
+		form = RegistrarDonacionForm(request.POST)	
 		if form.is_valid():
-			form.save()
+			donacion = form.save(commit=False)
+			print(donacion.estado)
+			donacion.estado = 'Donado'
+			print(donacion.estado)
+			donacion.save()
+
 			return redirect('donacion:listar')
 	else:
 		form = RegistrarDonacionForm()

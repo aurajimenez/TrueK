@@ -9,7 +9,7 @@ class Intercambio(models.Model):
 
 	ESTADOS = (
 		('Iniciado','Iniciado'),
-		('Realizado','Realizado'),
+		('Aceptado','Aceptado'),
 		('Rechazado','Rechazado'),
 	)
 
