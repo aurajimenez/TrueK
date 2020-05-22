@@ -25,7 +25,7 @@
 					<p> Estado de la donación: {{ donacion.estado }}</p>
 					<p> Fecha de realización de la donación: {{ donacion.fecha_donacion }}</p>
 					<p>¿ Qué desea hacer con la donación?</p>			</div>				
-									<a class="btn btn-primary" href="{% url 'donacion:aceptar' donacion.id %}">Aceptar</a>
+									<a class="btn btn-primary" href="{% url 'donacion:aceptar' donacion.id producto.id %}">Aceptar</a>
 					                <a class="btn btn-primary" href="{% url 'donacion:rechazar' donacion.id %}">Rechazar</a>
 				
 						</div>

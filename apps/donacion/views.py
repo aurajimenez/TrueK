@@ -32,15 +32,20 @@ def Listar(request):
 	donaciones = Donacion.objects.all()
 	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
 
-def Aceptar(request, donacion_id):
+def Aceptar(request, donacion_id, producto_id):
+	producto = Producto.objects.get(id=producto_id)
 	donacion = Donacion.objects.get(id=donacion_id)
 	if request.method == 'GET':
 		donacion.estado = 'Recibida'
 		donacion.fecha_aceptacion = date.today()
+		
 		donacion.save()
+		producto.estado = 'Donado'
+		producto.save()
 		print("La donación fue aceptada")
+		contexto = { 'donacion':donacion, 'producto':producto}
 		#return redirect('donacion:listar')
-		return render(request, "aceptar_donacion.html", {'donacion':donacion})
+		return render(request, "aceptar_donacion.html", contexto)
 	return redirect('donacion:listar')
 
 def Rechazar(request, donacion_id):
