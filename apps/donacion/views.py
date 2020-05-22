@@ -36,6 +36,7 @@ def Aceptar(request, donacion_id):
 	donacion = Donacion.objects.get(id=donacion_id)
 	if request.method == 'GET':
 		donacion.estado = 'Recibida'
+		donacion.fecha_aceptacion = date.today()
 		donacion.save()
 		print("La donación fue aceptada")
 		#return redirect('donacion:listar')
@@ -46,6 +47,7 @@ def Rechazar(request, donacion_id):
 	donacion = Donacion.objects.get(id=donacion_id)
 	if request.method == 'GET':
 		donacion.estado = 'Rechazada'
+		donacion.fecha_aceptacion = date.today()
 		donacion.save()
 		print("La donación fue Rechazada")
 	return render(request, "aceptar_donacion.html", {'donacion':donacion})
