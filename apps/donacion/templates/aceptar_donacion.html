@@ -1,0 +1,40 @@
+{% extends "base1.html" %}
+
+{% block title %}Aceptar {% endblock %}
+
+{% block contenido %}
+	<section class="donaciones">
+		<section class="donaciones__container">
+
+			<h3>Donaciones</h3>
+				<section>
+			<div class="container-fluid">
+            	<div class="row-fluid">
+					<div class="span4">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon">
+									<i class="icon-user"></i>
+								</span>
+								<h5>Ha recibido una donación, descripción: </h5>
+							</div>
+							<div class="widget-content nopadding">
+					<p> Donador: {{ donacion.donador }}</p>
+					<p> Objecto o servicio donado: {{ donacion.objecto_servicio }}</p>
+					<p> Beneficiado: {{ donacion.receptor }}</p>
+					<p> Estado de la donación: {{ donacion.estado }}</p>
+					<p> Fecha de realización de la donación: {{ donacion.fecha_donacion }}</p>
+					<p>¿ Qué desea hacer con la donación?</p>			</div>				
+									<a class="btn btn-primary" href="{% url 'donacion:aceptar' donacion.id %}">Aceptar</a>
+					                <a class="btn btn-primary" href="{% url 'donacion:rechazar' donacion.id %}">Rechazar</a>
+				
+						</div>
+					</div>
+
+	</div>	</div>
+</section>
+		
+	    </section>
+	</section>
+{% endblock %}
+

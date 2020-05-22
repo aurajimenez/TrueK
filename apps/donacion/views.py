@@ -28,8 +28,24 @@ def Modificar(request, donacion_id):
 			return redirect('donacion:listar')
 	return render(request, 'modificar_donacion.html',{'form': form})
 
-
 def Listar(request):
 	donaciones = Donacion.objects.all()
-	print(donaciones)
 	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
+
+def Aceptar(request, donacion_id):
+	donacion = Donacion.objects.get(id=donacion_id)
+	if request.method == 'GET':
+		donacion.estado = 'Recibida'
+		donacion.save()
+		print("La donación fue aceptada")
+		#return redirect('donacion:listar')
+		return render(request, "aceptar_donacion.html", {'donacion':donacion})
+	return redirect('donacion:listar')
+
+def Rechazar(request, donacion_id):
+	donacion = Donacion.objects.get(id=donacion_id)
+	if request.method == 'GET':
+		donacion.estado = 'Rechazada'
+		donacion.save()
+		print("La donación fue Rechazada")
+	return render(request, "aceptar_donacion.html", {'donacion':donacion})
