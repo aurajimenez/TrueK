@@ -26,7 +26,9 @@
 					<p> Beneficiado: {{ donacion.receptor }}</p>
 					<p> Estado de la donación: {{ donacion.estado }}</p>
 					<p> Fecha de realización de la donación: {{ donacion.fecha_donacion }}</p>
-					<p> Fecha de aceptación/recepción de la donación: {{ donacion.fecha_aceptacion }}</p>							</div>
+					{% if donacion.fecha_aceptacion %}
+					<p> Fecha de aceptación/recepción de la donación: {{ donacion.fecha_aceptacion }}</p>
+				    {% endif %}							</div>
 						</div>
 					</div>
 
