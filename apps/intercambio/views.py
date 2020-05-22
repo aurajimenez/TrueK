@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from datetime import date, datetime
 
 from .forms import RegistrarIntercambioForm, ModificarIntercambioForm
-from .models import Intercambio
+from .models import Intercambio, Producto
 
 def Registrar(request):
 	if request.method == 'POST':
@@ -33,14 +33,18 @@ def Listar(request):
 	intercambios = Intercambio.objects.all()
 	return render(request, "listar_intercambios.html", {'intercambios':intercambios})
 
-def Aceptar(request, intercambio_id):
+def Aceptar(request, intercambio_id, producto_id):
+	producto = Producto.objects.get(id=producto_id)
 	intercambio = Intercambio.objects.get(id=intercambio_id)
 	if request.method == "GET":
 		intercambio.estado = 'Aceptado'
 		intercambio.fecha_aceptacion_intercambio = date.today()
 		intercambio.save()
+		producto.estado = 'Intercambiado'
+		producto.save()
+		contexto = { 'intercambio':intercambio, 'producto':producto}
 		print("El intercambio fue Aceptado")
-	return render(request, "aceptar_intercambio.html", {'intercambio':intercambio})
+	return render(request, "aceptar_intercambio.html", contexto)
 
 def Rechazar(request, intercambio_id):
 	intercambio = Intercambio.objects.get(id=intercambio_id)
