@@ -32,3 +32,21 @@ def Modificar(request, intercambio_id):
 def Listar(request):
 	intercambios = Intercambio.objects.all()
 	return render(request, "listar_intercambios.html", {'intercambios':intercambios})
+
+def Aceptar(request, intercambio_id):
+	intercambio = Intercambio.objects.get(id=intercambio_id)
+	if request.method == "GET":
+		intercambio.estado = 'Aceptado'
+		intercambio.fecha_aceptacion_intercambio = date.today()
+		intercambio.save()
+		print("El intercambio fue Aceptado")
+	return render(request, "aceptar_intercambio.html", {'intercambio':intercambio})
+
+def Rechazar(request, intercambio_id):
+	intercambio = Intercambio.objects.get(id=intercambio_id)
+	if request.method == "GET":
+		intercambio.estado = 'Rechazado'
+		intercambio.fecha_aceptacion_intercambio = date.today()
+		intercambio.save()
+		print("El intercambio fue Rechazado")
+	return render(request, "aceptar_intercambio.html", {'intercambio':intercambio})
