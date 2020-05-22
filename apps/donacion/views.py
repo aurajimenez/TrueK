@@ -10,11 +10,8 @@ def Registrar(request):
 		form = RegistrarDonacionForm(request.POST)	
 		if form.is_valid():
 			donacion = form.save(commit=False)
-			print(donacion.estado)
 			donacion.estado = 'Donado'
-			print(donacion.estado)
 			donacion.save()
-
 			return redirect('donacion:listar')
 	else:
 		form = RegistrarDonacionForm()

@@ -24,4 +24,4 @@ urlpatterns = [
     path('intercambio/', include('apps.intercambio.urls', namespace="intercambio")),
     path('usuario/', include('apps.usuario.urls', namespace="usuario")),
     path('producto/', include('apps.producto.urls', namespace="producto")),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)

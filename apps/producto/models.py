@@ -7,8 +7,7 @@ class Producto(models.Model):
 	ESTADOS = (
 		('Vigente','Vigente'),
 		('Donado','Donado'),
-		('Aceptado','Aceptado'),
-		('Rechazado','Rechazado'),
+		('Intercambiado','Intercambiado'),
 	)
 
 	dueno = models.ForeignKey(Usuario, on_delete = models.CASCADE)
@@ -16,7 +15,7 @@ class Producto(models.Model):
 	descripcion = models.TextField()
 	foto = models.ImageField(upload_to ='media', null=True, blank=True)
 	etiquetas = models.CharField(verbose_name="Tags", max_length=100)
-	estado = models.CharField(verbose_name="Estado", max_length=100, choices=ESTADOS)
+	estado = models.CharField(verbose_name="Estado", max_length=100, choices=ESTADOS, default='Vigente')
 
 	def __str__(self):
 		return self.nombre

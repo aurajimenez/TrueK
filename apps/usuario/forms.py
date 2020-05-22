@@ -5,14 +5,13 @@ from .models import Usuario
 class RegistrarUsuarioForm(forms.ModelForm):
 	telefono = forms.CharField(required=True)
 	localizacion = forms.CharField(required=True)
-	photo = forms.ImageField(required=False)
 
 	username = forms.CharField(required=True)
 	password = forms.CharField(required=True, widget=forms.PasswordInput)
 
 	class Meta:
 		model = Usuario
-		fields = ('username', 'first_name', 'last_name', 'email', 'password', 'telefono','localizacion','photo',)
+		fields = ('username', 'first_name', 'last_name', 'email', 'password', 'telefono','localizacion',)
 
 class ModificarUsuarioForm(forms.ModelForm):
 

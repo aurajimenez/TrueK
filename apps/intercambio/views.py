@@ -9,7 +9,9 @@ def Registrar(request):
 	if request.method == 'POST':
 		form = RegistrarIntercambioForm(request.POST)
 		if form.is_valid():
-			form.save()
+			intercambio = form.save(commit=False)
+			intercambio.estado = 'Iniciado'
+			intercambio.save()
 			return redirect('intercambio:listar')
 	else:
 		form = RegistrarIntercambioForm()

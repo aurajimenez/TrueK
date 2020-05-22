@@ -21,11 +21,9 @@ class RegistrarIntercambioForm(forms.ModelForm):
 			self.add_error('producto_del_receptor', mensaje2)
 
 
-
-
 	class Meta:
 		model = Intercambio
-		fields = ('oferente', 'producto_del_oferente', 'producto_del_receptor', 'receptor', 'estado', 'fecha_solicitud_intercambio',)
+		fields = ('oferente', 'producto_del_oferente', 'producto_del_receptor', 'receptor', 'fecha_solicitud_intercambio',)
 
 
 class ModificarIntercambioForm(forms.ModelForm):
