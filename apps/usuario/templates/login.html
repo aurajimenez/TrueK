@@ -1,20 +1,8 @@
-{% extends "base1.html" %}
+{% extends "login.html" %}
 
-{% block title %}
-    Login
-{% endblock %}
+{% block contenido %}         
+            <form id="loginform" class="form-vertical" action="{% url 'producto:listar'%}" method="POST">{% csrf_token %}
+            	{{ form.as_p }}
+            </form>
 
-{% block barra_inicial %}
-{% endblock barra_inicial %}
-
-{% block barra_busqueda %}
-{% endblock barra_busqueda %}
-
-{% block contenido %}
-    <div class="container">            
-        <form method="POST" action="">{% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>
-        </form>
-    </div>
-{% endblock %}
+{% endblock contenido %}
