@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,7 @@
     {% endblock css %}
     {{ form.media }}
 </head>
-{% block contenido %}
+
 <body>
 
 <!--Header-part-->
@@ -29,6 +29,7 @@
 <!--close-top-Header-messaages--> 
 
 <!--top-Header-menu-->
+{% block barra_usuario %}
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
     <li class="" ><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
@@ -43,12 +44,15 @@
     <li class=""><a title="" href="{% url 'usuario:logout'%}"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
   </ul>
 </div>
+{% endblock barra_usuario %}
+
 {% block barra_busqueda %}
 <div id="search">
   <input type="text" placeholder="Search here..."/>
   <button type="submit" class="tip-left" title="Search"><i class="icon-search icon-white"></i></button>
 </div>
 {% endblock barra_busqueda %}
+
 <!--close-top-Header-menu-->
 {%  block barra_inicial %}
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a><ul>
@@ -79,7 +83,8 @@
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="{% static 'index.html' %}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
-  </div>
+
+  </div>{% block contenido %}
   <div class="container-fluid">
    	<div class="quick-actions_homepage">
     <ul class="quick-actions">
