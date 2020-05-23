@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from datetime import date, datetime
 
 from .forms import RegistrarDonacionForm, ModificarDonacionForm
 from .models import Donacion, Producto
 
+@login_required
 def Registrar(request):
 	if request.method == 'POST':
 		form = RegistrarDonacionForm(request.POST)	
@@ -17,6 +19,7 @@ def Registrar(request):
 		form = RegistrarDonacionForm()
 	return render(request, 'registrar_donacion.html', {'form': form})
 
+@login_required
 def Modificar(request, donacion_id):
 	donacion = Donacion.objects.get(id=donacion_id)
 	form = ModificarDonacionForm(instance=donacion)
@@ -28,10 +31,12 @@ def Modificar(request, donacion_id):
 			return redirect('donacion:listar')
 	return render(request, 'modificar_donacion.html',{'form': form})
 
+@login_required
 def Listar(request):
 	donaciones = Donacion.objects.all()
 	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
 
+@login_required
 def Aceptar(request, donacion_id, producto_id):
 	producto = Producto.objects.get(id=producto_id)
 	donacion = Donacion.objects.get(id=donacion_id)
@@ -48,6 +53,7 @@ def Aceptar(request, donacion_id, producto_id):
 		return render(request, "aceptar_donacion.html", contexto)
 	return redirect('donacion:listar')
 
+@login_required
 def Rechazar(request, donacion_id):
 	donacion = Donacion.objects.get(id=donacion_id)
 	if request.method == 'GET':

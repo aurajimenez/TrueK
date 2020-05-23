@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from .forms import RegistrarProductoForm, ModificarProductoForm
 from .models import Producto
 
+@login_required
 def Registrar(request):
 	if request.method == 'POST':
 		form = RegistrarProductoForm(request.POST, request.FILES)
@@ -13,6 +15,7 @@ def Registrar(request):
 		form = RegistrarProductoForm()
 	return render(request,'registrar_producto.html',{'form': form})
 
+@login_required
 def Modificar(request, producto_id):
 	producto = Producto.objects.get(id=producto_id)
 	form = ModificarProductoForm(instance=producto)
@@ -24,6 +27,7 @@ def Modificar(request, producto_id):
 			return redirect('producto:listar')
 	return render(request, 'modificar_producto.html',{'form': form})
 
+@login_required
 def Listar(request):
 	productos = Producto.objects.all()
 	return render(request, "listar_productos.html", {'productos':productos})

@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Usuario
 from .forms import RegistrarUsuarioForm, ModificarUsuarioForm
 
+@login_required
 def Registrar(request):
     if request.method == 'POST':
         form = RegistrarUsuarioForm(request.POST, request.FILES)
@@ -18,6 +20,7 @@ def Registrar(request):
         form = RegistrarUsuarioForm()
     return render(request, "registrar_usuario.html", {'form': form})
 
+@login_required
 def Modificar(request, usuario_id):
     usuario = Usuario.objects.get(id=usuario_id)
     form = ModificarUsuarioForm(instance=usuario)
@@ -29,7 +32,7 @@ def Modificar(request, usuario_id):
             return redirect('usuario:listar')
     return render(request, 'modificar_usuario.html',{'form': form})
 
-
+@login_required
 def Listar(request):
     usuarios = Usuario.objects.all()
     return render(request, "listar_usuarios.html", {'usuarios':usuarios})
@@ -57,3 +60,7 @@ def Login(request):
     else:
         form = AuthenticationForm()
     return render(request, "login.html", {'form': form})
+
+def Logout(request):
+    logout(request)
+    return redirect('/')
