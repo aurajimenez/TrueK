@@ -23,7 +23,7 @@ class RegistrarIntercambioForm(forms.ModelForm):
 
 	class Meta:
 		model = Intercambio
-		fields = ('oferente', 'producto_del_oferente', 'producto_del_receptor', 'receptor', 'fecha_solicitud_intercambio',)
+		fields = ('producto_del_oferente', 'producto_del_receptor', 'receptor', 'fecha_solicitud_intercambio',)
 
 
 class ModificarIntercambioForm(forms.ModelForm):
