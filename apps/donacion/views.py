@@ -12,6 +12,7 @@ def Registrar(request):
 		form = RegistrarDonacionForm(request.POST)	
 		if form.is_valid():
 			donacion = form.save(commit=False)
+			donacion.donador = request.user
 			donacion.estado = 'Donado'
 			donacion.save()
 			return redirect('donacion:listar')

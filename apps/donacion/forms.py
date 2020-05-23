@@ -21,7 +21,7 @@ class RegistrarDonacionForm(forms.ModelForm):
 
 	class Meta:
 		model = Donacion
-		fields = ('donador', 'objecto_servicio', 'receptor',)
+		fields = ('objecto_servicio', 'receptor',)
 
 class ModificarDonacionForm(forms.ModelForm):
 
