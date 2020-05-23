@@ -8,7 +8,7 @@
 
 			<h3>Donaciones</h3>
 			{% for donacion in donaciones %}
-				{% if donaciones %}
+				{% if donacion.donador == request.user %}
 				<section>
 			<div class="container-fluid">
             	<div class="row-fluid">

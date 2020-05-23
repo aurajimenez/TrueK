@@ -6,6 +6,7 @@
 {% block contenido %}
 <body>
 {% for producto in productos %}
+{% if producto.dueno == request.user %}
 <section>
 			<div class="container-fluid">
             	<div class="row-fluid">
@@ -31,6 +32,6 @@
 
 	</div>	</div>
 </section>
-
+{% endif %}
 {% endfor %}
 {% endblock %}

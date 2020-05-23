@@ -8,7 +8,7 @@
 
 			<h3>Intercambios</h3>
 			{% for intercambio in intercambios %}
-				{% if intercambios %}
+				{% if intercambio.oferente == request.user or intercambio.receptor == request.user%}
 				<section>
 			<div class="container-fluid">
             	<div class="row-fluid">
