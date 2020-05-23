@@ -34,7 +34,7 @@ def Modificar(request, donacion_id):
 
 @login_required
 def Listar(request):
-	donaciones = Donacion.objects.all()
+	donaciones = Donacion.objects.all().order_by("estado")
 	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
 
 @login_required

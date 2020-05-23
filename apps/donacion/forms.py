@@ -1,12 +1,10 @@
 from django import forms
 
-from .models import Donacion
+from .models import Donacion, Usuario
 
 import datetime
 
 class RegistrarDonacionForm(forms.ModelForm):
-	#fecha_donacion = forms.DateField(widget= forms.DateInput(attrs={'placeholder': '__/__/____', 'class': 'date',}))
-	#fecha_aceptacion = forms.DateField(widget= forms.DateInput(attrs={'placeholder': '__/__/____', 'class': 'date',}))
 
 	def clean(self):
 		cleaned_data = super().clean()
