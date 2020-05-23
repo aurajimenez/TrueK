@@ -9,7 +9,9 @@ def Registrar(request):
 	if request.method == 'POST':
 		form = RegistrarProductoForm(request.POST, request.FILES)
 		if form.is_valid():
-			form.save()
+			producto = form.save(commit=False)
+			producto.dueno = request.user
+			producto.save()
 			return redirect('producto:listar')
 	else:
 		form = RegistrarProductoForm()

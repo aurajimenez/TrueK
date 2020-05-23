@@ -61,6 +61,7 @@ def Login(request):
         form = AuthenticationForm()
     return render(request, "login.html", {'form': form})
 
+@login_required
 def Logout(request):
     logout(request)
-    return redirect('/')
+    return redirect("login.html")
