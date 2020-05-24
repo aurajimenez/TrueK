@@ -57,16 +57,16 @@
 {%  block barra_inicial %}
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a><ul>
     <li class="active"><a href="index.html' %}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> <span class="label label-important">3</span></a>
+      <ul>
+        <li><a href="{% url 'producto:registrar'%}">Registrar</a></li>
+        <li><a href="{% url 'producto:listar'%}">Listar</a></li>
+      </ul>
+    </li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Donaciones</span> <span class="label label-important">3</span></a>
       <ul>
         <li><a href="{% url 'donacion:registrar'%}">Registrar</a></li>
         <li><a href="{% url 'donacion:listar'%}">Listar</a></li>
-      </ul>
-    </li>
-    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Productos</span> <span class="label label-important">3</span></a>
-      <ul>
-        <li><a href="{% url 'producto:registrar'%}">Registrar</a></li>
-        <li><a href="{% url 'producto:listar'%}">Listar</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Intercambios</span> <span class="label label-important">3</span></a>
@@ -335,16 +335,18 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>{% endblock contenido %}
 </div>
 </div>
 </div>
-{% endblock contenido %}
-<div class="row-fluid">
+
+
 {% block footer %}
+<div class="row-fluid">
+
   <div id="footer" class="span12"> 2012 &copy; Marutii Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
-{% endblock footer %}
-</div>
+
+</div>{% endblock footer %}
 <script src="{% static 'js/excanvas.min.js' %}"></script> 
 <script src="{% static 'js/jquery.min.js' %}"></script> 
 <script src="{% static 'js/jquery.ui.custom.js' %}"></script> 

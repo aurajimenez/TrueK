@@ -4,6 +4,10 @@
    Usuarios 
 {% endblock %}
 
+{% block barra_usuario %}
+
+{% endblock barra_usuario %}
+
 {% block barra_busqueda %} 
 
 {% endblock barra_busqueda %}
@@ -28,6 +32,7 @@
 						<div class="widget-content">
 							<img src="{% static 'img/th2.png' %}" style="width: 150px;">
 						</div>
+						<br>
 						<p> <b>Teléfono:</b> {{ usuario.telefono}} </p>
 						<p> <b>Localización:</b> {{ usuario.localizacion}} </p>
 						<p> <b>Correo electrónico:</b> {{ usuario.email}} </p>

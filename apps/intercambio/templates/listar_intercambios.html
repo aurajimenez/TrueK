@@ -1,46 +1,38 @@
 {% extends "base1.html" %}
 
-{% block title %}Intercambios {% endblock %}
+{% block title %}
+Intercambios 
+{% endblock %}
 
 {% block contenido %}
-	<section class="donaciones">
-		<section class="donaciones__container">
 
-			<h3>Intercambios</h3>
-			{% for intercambio in intercambios %}
-				{% if intercambio.oferente == request.user or intercambio.receptor == request.user%}
-				<section>
-			<div class="container-fluid">
-            	<div class="row-fluid">
-					<div class="span4">
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon">
-									<i class="icon-user"></i>
-								</span>
-								<h5>{{ intercambio.id|upper }}</h5>
-							</div>
-							<div class="widget-content nopadding">
-					<p> Oferente: {{ intercambio.oferente }}</p>
-					<p> Producto 1: {{ intercambio.producto_del_oferente }}</p>	<p> Producto 2: {{ intercambio.producto_del_receptor }}</p>
-					<p> Receptor: {{ intercambio.receptor }}</p>
-					<p> Estado del intercambio: {{ intercambio.estado }}</p>
-					<p> Fecha de inicio del intercambio: {{ intercambio.fecha_solicitud_intercambio }}</p>
-					{% if intercambio.fecha_aceptacion_intercambio %}
-					<p> Fecha de aceptación/recepción del intercambio: {{ intercambio.fecha_aceptacion_intercambio }}</p>
-				    {% endif %}	
-							</div>
+{% for intercambio in intercambios %}
+	{% if intercambio.oferente == request.user or intercambio.receptor == request.user%}
+		<div class="container-fluid">
+            <div class="row-fluid">
+				<div class="span4">
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-tag"></i>
+							</span>
+							<h5>{{ intercambio.id|upper }}</h5>
+						</div>
+						<div class="widget-content ">
+							<p> <b>Oferente:</b> {{ intercambio.oferente }}</p>
+							<p> <b>Producto 1:</b> {{ intercambio.producto_del_oferente }}</p>	<p> <b>Producto 2:</b> {{ intercambio.producto_del_receptor }}</p>
+							<p> <b>Receptor:</b> {{ intercambio.receptor }}</p>
+							<p> <b>Estado del intercambio:</b> {{ intercambio.estado }}</p>
+							<p> <b>Inicio del intercambio:</b> {{ intercambio.fecha_solicitud_intercambio }}</p>
+								{% if intercambio.fecha_aceptacion_intercambio %}
+									<p> <b>Fecha de aceptación/recepción del intercambio:</b> {{ intercambio.fecha_aceptacion_intercambio }}</p>
+							    {% endif %}	
 						</div>
 					</div>
-
-	</div>	</div>
-</section>
-				{% endif %}
-				{% if not intercambios %}
-					<p>No hay intercambios, tacaño!!!</p>
-				{% endif %}
-			 {% endfor %}
-	    </section>
-	</section>
-{% endblock %}
+				</div>
+	        </div>	
+        </div>
+{% endif %}
+{% endfor %}
+{% endblock contenido %}
 

@@ -1,39 +1,37 @@
 {% extends "base1.html" %}
 
-{% block title %}Intercambios {% endblock %}
+{% block title %}
+Intercambio 
+{% endblock %}
+
+{% block barra_busqueda %}
+{% endblock barra_busqueda %}
 
 {% block contenido %}
-	<section class="donaciones">
-		<section class="donaciones__container">
-
-			<h3>Intercambios</h3>
-				<section>
-			<div class="container-fluid">
-            	<div class="row-fluid">
-					<div class="span4">
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon">
-									<i class="icon-user"></i>
-								</span>
-								<h5>{{ intercambio.id|upper }}</h5>
-							</div>
-							<div class="widget-content nopadding">
-					<p> Oferente: {{ intercambio.oferente }}</p>
-					<p> Producto 1: {{ intercambio.producto_del_oferente }}</p>	
-					<p> Producto 2: {{ intercambio.producto_del_receptor }}</p>
-					<p> Receptor: {{ intercambio.receptor }}</p>
-					<p> Estado del intercambio: {{ intercambio.estado }}</p>
-					<p> Fecha de inicio del intercambio: {{ intercambio.fecha_solicitud_intercambio }}</p>
-							</div>
-									<a class="btn btn-primary" href="{% url 'intercambio:aceptar' intercambio.id producto.id %}">Aceptar</a>
-					                <a class="btn btn-warning" href="{% url 'intercambio:rechazar' intercambio.id %}">Rechazar</a>
-						</div>
+	<div class="container-fluid">
+        <div class="row-fluid">
+			<div class="span4">
+				<div class="widget-box">
+					<div class="widget-title">
+						<span class="icon">
+							<i class="icon-user"></i>
+						</span>
+						<h5>{{ intercambio.id|upper }}</h5>
 					</div>
+					<div class="widget-content ">
+						<p> <b>Oferente:</b> {{ intercambio.oferente }}</p>
+						<p> <b>Producto 1:</b> {{ intercambio.producto_del_oferente }}</p>	
+						<p> <b>Producto 2:</b> {{ intercambio.producto_del_receptor }}</p>
+						<p> <b>Receptor:</b> {{ intercambio.receptor }}</p>
+						<p> <b>Estado del intercambio:</b> {{ intercambio.estado }}</p>
+						<p> <b>Fecha de inicio del intercambio:</b> {{ intercambio.fecha_solicitud_intercambio }}</p>
+					    <a class="btn btn-primary" href="{% url 'intercambio:aceptar' intercambio.id producto.id %}">Aceptar</a>
+					    <a class="btn btn-danger" href="{% url 'intercambio:rechazar' intercambio.id %}">Rechazar</a>
+					</div>
+				</div>
+			</div>
+	    </div>	
+    </div>
 
-	</div>	</div>
-</section>
-	    </section>
-	</section>
-{% endblock %}
+{% endblock contenido %}
 

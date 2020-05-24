@@ -55,7 +55,7 @@ def Aceptar(request, donacion_id, producto_id):
 	return redirect('donacion:listar')
 
 @login_required
-def Rechazar(request, donacion_id):
+def Rechazar(request, donacion_id, producto_id):
 	donacion = Donacion.objects.get(id=donacion_id)
 	if request.method == 'GET':
 		donacion.estado = 'Rechazada'

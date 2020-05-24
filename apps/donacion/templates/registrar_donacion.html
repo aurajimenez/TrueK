@@ -1,23 +1,32 @@
 {% extends "base1.html" %}
 
-{% block title %}Registrar Donación {% endblock %}
-
-{% block barra_busqueda %} {% endblock barra_busqueda %}
-{% block contenido %}
-<body>
-<h2>Realiza tu donación</h2>	
-<section>
-
-
-		<form action="" method="post">{% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-		<input type="submit" value="Enviar">
-	
-        </form>
-        </section>
-		
-</body>
+{% block title %}
+Registrar Donación 
 {% endblock %}
+
+{% block barra_busqueda %} 
+{% endblock barra_busqueda %}
+
+{% block contenido %}
+
+<div class="span6">
+    <div class="widget-box">
+        <div class="widget-title"> 
+            <span class="icon"> 
+                <i class="icon-align-justify"></i> 
+            </span>
+            <h5>Registrar donación</h5>
+        </div>
+        <div class="widget-content">
+		    <form action="" method="post">{% csrf_token %}
+		        <table>
+		            {{ form.as_table }}
+		        </table>
+			<input type="submit" value="Enviar">
+        	</form>
+        </div>
+    </div>
+</div>
+
+{% endblock contenido %}
 

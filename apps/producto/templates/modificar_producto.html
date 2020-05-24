@@ -1,22 +1,29 @@
 {% extends "base1.html" %}
 
-{% block title %}Registrar Producto {% endblock %}
-
-{% block barra_busqueda %} {% endblock barra_busqueda %}
-{% block contenido %}
-<body>
-<h2>Registra tu producto</h2>	
-<section>
-
-
-		<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-		<input type="submit" value="Enviar">
-	
-        </form>
-        </section>
-		
-</body>
+{% block title %}
+Modificar producto 
 {% endblock %}
+
+{% block barra_busqueda %} 
+{% endblock barra_busqueda %}
+
+{% block contenido %}
+<div class="span6">
+    <div class="widget-box">
+        <div class="widget-title"> 
+            <span class="icon"> 
+                <i class="icon-align-justify"></i> 
+            </span>
+            <h5>Modificar producto</h5>
+        </div>
+        <div class="widget-content">
+			<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+		        <table>
+		            {{ form.as_table }}
+		        </table>
+				<input type="submit" value="Enviar">
+	        </form>
+        </div>
+    </div>
+</div>	        
+{% endblock contenido %}
