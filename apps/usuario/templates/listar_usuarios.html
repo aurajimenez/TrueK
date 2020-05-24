@@ -1,33 +1,42 @@
 {% extends "base1.html" %}
 
-{% block title %} Usuarios {% endblock %}
+{% block title %} 
+   Usuarios 
+{% endblock %}
 
-{% block barra_busqueda %} {% endblock barra_busqueda %}
+{% block barra_busqueda %} 
+
+{% endblock barra_busqueda %}
+
+
 {% block contenido %}
+<p>EL usuario actual es: {{ user.username|upper }}</p>
+{% load static %}
 {% for usuario in usuarios %}
-<div class="container">
-			<div class="container-fluid">
-            	<div class="row-fluid">
-					<div class="span4">
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon">
-									<i class="icon-user"></i>
-								</span>
-								<h5>{{ usuario.nombre|upper }}</h5>
-								<p>EL usuario actual es: {{ user.username|upper }}</p>
-							</div>
-							<div class="widget-content nopadding">
 
-								<p> Teléfono: {{ usuario.telefono}} </p>
-								<p> Localización: {{ usuario.localizacion}} </p>
-								<p> Correo electrónico: {{ usuario.email}} </p>
-							
-							</div>
-						</div>
+<div class="container-fluid">
+        <div class="row-fluid">
+			<div class="span4">
+				<div class="widget-box">
+					<div class="widget-title">
+						<span class="icon">
+							 <i class="icon-user"></i>
+						</span>
+						<h5> {{ usuario.first_name|capfirst}} {{ usuario.last_name|capfirst }}</h5>
 					</div>
-
-	</div>	</div>
+					<div class="widget-content ">
+						<div class="widget-content">
+							<img src="{% static 'img/th2.png' %}" style="width: 150px;">
+						</div>
+						<p> <b>Teléfono:</b> {{ usuario.telefono}} </p>
+						<p> <b>Localización:</b> {{ usuario.localizacion}} </p>
+						<p> <b>Correo electrónico:</b> {{ usuario.email}} </p>
+					</div>
+				</div>
+			</div>
+	    </div>	
 </div>
+
 {% endfor %}
+
 {% endblock contenido %}

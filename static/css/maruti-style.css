@@ -27,7 +27,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 #header h1 {
-    background: url("../img/Truek.png") no-repeat scroll 0 0 transparent;
+    background: url("../img/Truek2.png") no-repeat scroll 0 0 transparent;
     height: 31px;
     left: 15px;
     line-height: 600px;
@@ -191,6 +191,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 .container-fluid .row-fluid:first-child {
 	margin-top: 20px;
 }
+
 /* Breadcrumb */
 #breadcrumb {
 	background-color: #fff;
