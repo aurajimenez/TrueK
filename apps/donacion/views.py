@@ -9,7 +9,7 @@ from .models import Donacion, Producto
 @login_required
 def Registrar(request):
 	if request.method == 'POST':
-		form = RegistrarDonacionForm(request.POST)	
+		form = RegistrarDonacionForm(request.POST, usuario_actual=request.user)	
 		if form.is_valid():
 			donacion = form.save(commit=False)
 			donacion.donador = request.user
@@ -17,7 +17,7 @@ def Registrar(request):
 			donacion.save()
 			return redirect('donacion:listar')
 	else:
-		form = RegistrarDonacionForm()
+		form = RegistrarDonacionForm(usuario_actual=request.user)
 	return render(request, 'registrar_donacion.html', {'form': form})
 
 @login_required
@@ -34,24 +34,21 @@ def Modificar(request, donacion_id):
 
 @login_required
 def Listar(request):
-	donaciones = Donacion.objects.all().order_by("estado")
+	donaciones = Donacion.objects.filter(donador=request.user).order_by("estado")
 	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
 
 @login_required
 def Aceptar(request, donacion_id, producto_id):
 	producto = Producto.objects.get(id=producto_id)
 	donacion = Donacion.objects.get(id=donacion_id)
-	if request.method == 'GET':
-		donacion.estado = 'Recibida'
-		donacion.fecha_aceptacion = date.today()
-		
-		donacion.save()
-		producto.estado = 'Donado'
-		producto.save()
-		print("La donación fue aceptada")
-		contexto = { 'donacion':donacion, 'producto':producto}
-		#return redirect('donacion:listar')
-		return render(request, "aceptar_donacion.html", contexto)
+
+	donacion.estado = 'Recibida'
+	donacion.fecha_aceptacion = date.today()
+	donacion.save()
+	
+	producto.estado = 'Donado'
+	producto.save()
+	print("La donación fue aceptada")
 	return redirect('donacion:listar')
 
 @login_required
