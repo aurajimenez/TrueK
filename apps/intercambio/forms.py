@@ -1,12 +1,16 @@
 from django import forms
 
-from .models import Intercambio
+from .models import Intercambio, Producto, Usuario
 
 class RegistrarIntercambioForm(forms.ModelForm):
+	#def __init__(self, usuario_actual, *args, **kwargs):
+	#	super(RegistrarIntercambioForm, self).__init__(*args, **kwargs)
+	#	self.fields['producto_del_oferente'].queryset = Producto.objects.filter(dueno=usuario_actual)
 
 	def clean(self):
 		cleaned_data = super().clean()
 		oferente = cleaned_data.get("oferente")
+		print(oferente)
 		receptor = cleaned_data.get("receptor")
 		producto_del_oferente = cleaned_data.get("producto_del_oferente")
 		producto_del_receptor = cleaned_data.get("producto_del_receptor")

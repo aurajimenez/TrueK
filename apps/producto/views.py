@@ -31,5 +31,5 @@ def Modificar(request, producto_id):
 
 @login_required
 def Listar(request):
-	productos = Producto.objects.all()
+	productos = Producto.objects.filter(dueno=request.user)
 	return render(request, "listar_productos.html", {'productos':productos})

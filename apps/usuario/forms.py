@@ -8,7 +8,7 @@ class RegistrarUsuarioForm(forms.ModelForm):
 	email = forms.CharField(label="Correo electrónico")
 	telefono = forms.CharField(label="Teléfono")
 	localizacion = forms.CharField(label="Localización")
-	photo = forms.CharField(label="Foto")
+	photo = forms.ImageField(label="Foto")
 
 	username = forms.CharField(required=True)
 	password = forms.CharField(required=True, widget=forms.PasswordInput)

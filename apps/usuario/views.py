@@ -40,6 +40,7 @@ def Listar(request):
 
 def Login(request):
     if request.method == 'POST':
+        print("Jojoa")
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             # los campos username y password son los que utiliza el form: "AuthenticationForm"
@@ -64,4 +65,4 @@ def Login(request):
 @login_required
 def Logout(request):
     logout(request)
-    return redirect("login.html")
+    return redirect("usuario:login")

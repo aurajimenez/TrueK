@@ -1,4 +1,4 @@
-{% extends "base1.html" %}
+{% extends "base.html" %}
 
 {% block title %}
 Registrar Producto 
@@ -10,32 +10,30 @@ Registrar Producto
 {% block contenido %}
 
 {% load static %}
-{% for producto in productos %}
-{% if producto.dueno == request.user %}
-<div class="container-fluid">
-    <div class="row-fluid">
-		<div class="span4">
-			<div class="widget-box">
-				<div class="widget-title">
-					<span class="icon">
-						<i class="icon-briefcase"></i>
-					</span>
-						<h5>{{ producto.nombre|upper }}</h5>
-				</div>
-				<div class="widget-content">
-					<div class="widget-content">
-							<img src="{{ producto.foto.url }}" style="width: 150px;">
+	{% for producto in productos %}
+		<div class="container-fluid">
+		    <div class="row-fluid">
+				<div class="span4">
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-briefcase"></i>
+							</span>
+								<h5>{{ producto.nombre|upper }}</h5>
+						</div>
+						<div class="widget-content">
+							<div class="widget-content">
+									<img src="{{ producto.foto.url }}" style="width: 150px;">
+							</div>
+							<br>
+							<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
+							<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
+							<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
+							<p> <b>Foto:</b> {{ producto.foto|capfirst }} </p>
+						</div>
 					</div>
-					<br>
-					<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
-					<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
-					<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
-					<p> <b>Foto:</b> {{ producto.foto|capfirst }} </p>
 				</div>
-			</div>
+			</div>	
 		</div>
-	</div>	
-</div>
-{% endif %}
-{% endfor %}
+	{% endfor %}
 {% endblock contenido %}
