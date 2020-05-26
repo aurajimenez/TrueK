@@ -60,7 +60,7 @@ def Login(request):
             messages.error(request, "Invalid username or password.")
     else:
         form = AuthenticationForm()
-    return render(request, "login.html", {'form': form})
+    return render(request, "base_login.html", {'form': form})
 
 @login_required
 def Logout(request):
