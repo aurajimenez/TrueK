@@ -34,7 +34,8 @@ def Modificar(request, intercambio_id):
 
 @login_required
 def Listar(request):
-	intercambios = Intercambio.objects.all()
+	from django.db.models import FilteredRelation, Q
+	intercambios = Intercambio.objects.filter(Q(oferente=request.user)|Q(receptor=request.user))
 	return render(request, "listar_intercambios.html", {'intercambios':intercambios})
 
 @login_required
