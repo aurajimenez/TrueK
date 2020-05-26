@@ -1,21 +1,18 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import Usuario
 
-class RegistrarUsuarioForm(forms.ModelForm):
-	telefono = forms.CharField(required=True)
-	localizacion = forms.CharField(required=True)
-	email = forms.CharField(label="Correo electrónico")
-	telefono = forms.CharField(label="Teléfono")
-	localizacion = forms.CharField(label="Localización")
-	photo = forms.ImageField(label="Foto")
+class RegistrarUsuarioForm(UserCreationForm):
 
-	username = forms.CharField(required=True)
-	password = forms.CharField(required=True, widget=forms.PasswordInput)
+	email = forms.CharField(label="Correo electrónico")
+	telefono = forms.CharField(label="Teléfono", required=True)
+	localizacion = forms.CharField(label="Localización", required=True)
+	photo = forms.ImageField(label="Foto", required=False)
 
 	class Meta:
 		model = Usuario
-		fields = ('username', 'first_name', 'last_name', 'email', 'password', 'telefono','localizacion', 'photo',)
+		fields = ('username', 'first_name', 'last_name', 'email', 'telefono','localizacion', 'photo',)
 
 class ModificarUsuarioForm(forms.ModelForm):
 

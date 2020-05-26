@@ -8,11 +8,14 @@ from .models import Intercambio, Producto
 
 @login_required
 def Registrar(request):
+	
 	if request.method == 'POST':
 		form = RegistrarIntercambioForm(request.POST)
 		if form.is_valid():
 			intercambio = form.save(commit=False)
+			producto_del_receptor1 = intercambio.producto_del_receptor
 			intercambio.oferente = request.user
+			intercambio.receptor = producto_del_receptor1.dueno
 			intercambio.estado = 'Iniciado'
 			intercambio.save()
 			return redirect('intercambio:listar')
@@ -42,7 +45,7 @@ def Listar(request):
 def Aceptar(request, intercambio_id, producto_id):
 	producto = Producto.objects.get(id=producto_id)
 	intercambio = Intercambio.objects.get(id=intercambio_id)
-	if request.method == "GET":
+	if request.method == "POST":
 		intercambio.estado = 'Aceptado'
 		intercambio.fecha_aceptacion_intercambio = date.today()
 		intercambio.save()
@@ -55,7 +58,7 @@ def Aceptar(request, intercambio_id, producto_id):
 @login_required
 def Rechazar(request, intercambio_id):
 	intercambio = Intercambio.objects.get(id=intercambio_id)
-	if request.method == "GET":
+	if request.method == "POST":
 		intercambio.estado = 'Rechazado'
 		intercambio.fecha_aceptacion_intercambio = date.today()
 		intercambio.save()
