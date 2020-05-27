@@ -15,7 +15,7 @@ def Registrar(request):
 			usuario_actual = Donacion(donador = request.user)
 			donacion = form.save(commit=False)
 			donacion.donador = request.user
-			donacion.estado = 'Donado'
+			donacion.estado = 'Iniciada'
 			donacion.save()
 			return redirect('donacion:listar')
 	else:
@@ -56,10 +56,14 @@ def Aceptar(request, donacion_id, producto_id):
 
 @login_required
 def Rechazar(request, donacion_id, producto_id):
+	producto = Producto.objects.get(id=producto_id)
 	donacion = Donacion.objects.get(id=donacion_id)
-	if request.method == 'POST':
-		donacion.estado = 'Rechazada'
-		donacion.fecha_aceptacion = date.today()
-		donacion.save()
-		print("La donación fue Rechazada")
+
+	donacion.estado = 'Rechazada'
+	donacion.fecha_aceptacion = date.today()
+	donacion.save()
+
+	producto.estado = 'Vigente'
+	producto.save()
+	print("La donación fue Rechazada")
 	return render(request, "aceptar_donacion.html", {'donacion':donacion})
