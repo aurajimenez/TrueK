@@ -8,16 +8,18 @@ from .models import Donacion, Producto
 
 @login_required
 def Registrar(request):
+	
 	if request.method == 'POST':
-		form = RegistrarDonacionForm(request.POST)	
+		form = RegistrarDonacionForm(request.user, request.POST)	
 		if form.is_valid():
+			usuario_actual = Donacion(donador = request.user)
 			donacion = form.save(commit=False)
 			donacion.donador = request.user
 			donacion.estado = 'Donado'
 			donacion.save()
 			return redirect('donacion:listar')
 	else:
-		form = RegistrarDonacionForm()
+		form = RegistrarDonacionForm(request.user)
 	return render(request, 'registrar_donacion.html', {'form': form})
 
 @login_required
