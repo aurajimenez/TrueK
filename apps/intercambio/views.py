@@ -63,5 +63,7 @@ def Rechazar(request, intercambio_id):
 		intercambio.estado = 'Rechazado'
 		intercambio.fecha_aceptacion_intercambio = date.today()
 		intercambio.save()
+		producto.estado = 'Vigente'
+		producto.save()
 		print("El intercambio fue Rechazado")
 	return render(request, "aceptar_intercambio.html", {'intercambio':intercambio})
