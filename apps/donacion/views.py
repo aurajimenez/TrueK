@@ -36,7 +36,8 @@ def Modificar(request, donacion_id):
 
 @login_required
 def Listar(request):
-	donaciones = Donacion.objects.filter(donador=request.user).order_by("estado")
+	from django.db.models import FilteredRelation, Q
+	donaciones = Donacion.objects.filter(Q(donador=request.user)|Q(receptor=request.user))
 	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
 
 @login_required

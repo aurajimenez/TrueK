@@ -24,9 +24,9 @@
 								{% if donacion.fecha_aceptacion %}
 									<p> <b>Fecha de aceptación/recepción de la donación:</b> {{ donacion.fecha_aceptacion }}</p>
 							    {% endif %}
-							    {% if donacion.estado == "Iniciada" %}
-                    <a class="btn btn-primary" href="{% url 'donacion:aceptar' donacion.id producto.id %}">Aceptar</a>
-					<a class="btn btn-danger" href="{% url 'donacion:rechazar' donacion.id producto.id %}">Rechazar</a>
+							    {% if donacion.estado == "Donado" %}
+                    <a class="btn btn-primary" href="">Aceptar</a>
+					<a class="btn btn-danger" href="">Rechazar</a>
 					            {% endif %}								
 				        </div>
 				    </div>
