@@ -7,7 +7,7 @@ import datetime
 class RegistrarDonacionForm(forms.ModelForm):
 	def __init__(self, donador, *args, **kwargs):
 		super(RegistrarDonacionForm, self).__init__(*args, **kwargs)
-		self.fields["objecto_servicio"].queryset = Producto.objects.filter(dueno=donador).exclude(estado='Donado')
+		self.fields["objecto_servicio"].queryset = Producto.objects.filter(dueno=donador).exclude(estado='Donado').exclude(estado='Intercambiado')
 		self.fields["receptor"].queryset = Usuario.objects.exclude(id=donador.id)
 
 	def clean(self):

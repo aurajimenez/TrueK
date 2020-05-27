@@ -31,7 +31,7 @@ Intercambios
 							    <a class="btn btn-primary" href="">Aceptar</a>
 					            <a class="btn btn-danger" href="">Rechazar</a>
 					            {% endif %}	
-                                {% if intercambio.oferente == request.user %}
+                                {% if intercambio.oferente == request.user and intercambio.estado == "Iniciado" %}
 							    <a class="btn btn-danger" href="">Cancelar</a>
 					            {% endif %}							            			            
 						</div>

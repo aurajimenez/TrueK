@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}
 Registrar Producto 
 {% endblock %}
@@ -9,7 +9,7 @@ Registrar Producto
 
 {% block contenido %}
 
-{% load static %}
+
 	{% for producto in productos %}
 		<div class="container-fluid">
 		    <div class="row-fluid">
@@ -29,7 +29,7 @@ Registrar Producto
 							<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
 							<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
 							<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
-							<p> <b>Foto:</b> {{ producto.foto|capfirst }} </p>
+							<p> <b>Foto:</b>  </p>
 						</div>
 					</div>
 				</div>
