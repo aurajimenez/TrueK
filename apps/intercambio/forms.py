@@ -3,9 +3,10 @@ from django import forms
 from .models import Intercambio, Producto, Usuario
 
 class RegistrarIntercambioForm(forms.ModelForm):
-	#def __init__(self, usuario_actual, *args, **kwargs):
-	#	super(RegistrarIntercambioForm, self).__init__(*args, **kwargs)
-	#	self.fields['producto_del_oferente'].queryset = Producto.objects.filter(dueno=usuario_actual)
+	def __init__(self, oferente, *args, **kwargs):
+		super(RegistrarIntercambioForm, self).__init__(*args, **kwargs)
+		self.fields['producto_del_oferente'].queryset = Producto.objects.filter(dueno=oferente)
+		self.fields['producto_del_receptor'].queryset = Producto.objects.exclude(dueno=oferente)
 
 	def clean(self):
 		cleaned_data = super().clean()

@@ -10,17 +10,18 @@ from .models import Intercambio, Producto
 def Registrar(request):
 	
 	if request.method == 'POST':
-		form = RegistrarIntercambioForm(request.POST)
+		form = RegistrarIntercambioForm(request.user, request.POST)
 		if form.is_valid():
+			usuario_actual = Intercambio(oferente = request.user)
 			intercambio = form.save(commit=False)
-			producto_del_receptor1 = intercambio.producto_del_receptor
 			intercambio.oferente = request.user
-			intercambio.receptor = producto_del_receptor1.dueno
+			intercambio.receptor = intercambio.producto_del_oferente.dueno
+			intercambio.receptor = intercambio.producto_del_receptor.dueno
 			intercambio.estado = 'Iniciado'
 			intercambio.save()
 			return redirect('intercambio:listar')
 	else:
-		form = RegistrarIntercambioForm()
+		form = RegistrarIntercambioForm(request.user)
 	return render(request, 'registrar_intercambio.html', {'form': form})
 
 @login_required
