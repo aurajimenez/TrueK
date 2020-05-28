@@ -66,3 +66,21 @@ def Logout(request):
 def Inicio(request):
     productos = Producto.objects.all()
     return render(request, "inicio.html", {'productos':productos})
+
+def Perfil(request, usuario_id):
+    usuario = Usuario.objects.get(id=usuario_id)
+
+    primer_nombre = usuario.first_name
+    apellido = usuario.last_name
+    email = usuario.email
+    telefono = usuario.telefono
+
+    contexto = {
+
+    'primer_nombre':primer_nombre,
+    'apellido': apellido,
+    'email': email,
+    'telefono': telefono,
+
+    }
+    return render(request, "perfil_usuario.html", {'contexto':contexto})

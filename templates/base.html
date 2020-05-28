@@ -32,7 +32,7 @@
 {% block barra_usuario %}
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li class="" ><a title="" href="#"><i class="icon icon-user"></i> <span class="text">{{ request.user }}</span></a></li>
+    <li class="" ><a title="" href="{% url 'usuario:perfil' request.user.id %}"><i class="icon icon-user"></i> <span class="text">{{ request.user }}</span></a></li>
     <li class=" dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a class="sAdd" title="" href="#">new message</a></li>
