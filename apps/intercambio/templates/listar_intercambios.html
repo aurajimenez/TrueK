@@ -40,6 +40,9 @@ Intercambios
 	        </div>	
         </div>
     {% endif %}
+    {% if not intercambio %}
+    <p>No haz realizado ningún intercambio, te invitamos a hacerlo!!</p>
+    {% endif %}   
 {% endfor %}
 {% endblock contenido %}
 

@@ -36,6 +36,10 @@
 			    </div>
 	        </div>	
         </div>
+    {% if not donacion %}
+    <div><p>No haz realizado ninguna donacion, te invitamos a hacerlo!!</p></div>
+    
+    {% endif %} 
 {% endfor %}
 {% endblock contenido %}
 

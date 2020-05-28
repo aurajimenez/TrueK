@@ -30,6 +30,8 @@ Registrar Producto
 							<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
 							<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
 							<p> <b>Foto:</b>  </p>
+
+							<a class="btn btn-success" href="{% url 'donacion:registrar' %}">Donar</a>
 						</div>
 					</div>
 				</div>

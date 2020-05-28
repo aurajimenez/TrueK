@@ -53,6 +53,7 @@ def Aceptar(request, donacion_id, producto_id):
 	donacion.save()
 	
 	producto.estado = 'Donado'
+	producto.dueno = request.user
 	producto.save()
 	print("La donación fue aceptada")
 	return redirect('donacion:listar')

@@ -53,6 +53,7 @@ def Aceptar(request, intercambio_id, producto_id):
 	intercambio.fecha_aceptacion_intercambio = date.today()
 	intercambio.save()
 	producto.estado = 'Intercambiado'
+	producto.dueno = request.user
 	producto.save()
 	contexto = { 'intercambio':intercambio, 'producto':producto}
 	print("El intercambio fue Aceptado")

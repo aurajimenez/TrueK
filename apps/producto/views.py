@@ -33,3 +33,5 @@ def Modificar(request, producto_id):
 def Listar(request):
 	productos = Producto.objects.filter(dueno=request.user)
 	return render(request, "listar_productos.html", {'productos':productos})
+
+
