@@ -44,30 +44,28 @@ def Listar(request):
 	return render(request, "listar_donaciones.html", {'donaciones':donaciones})
 
 @login_required
-def Aceptar(request, donacion_id, producto_id):
-	producto = Producto.objects.get(id=producto_id)
+def Aceptar(request, donacion_id):
 	donacion = Donacion.objects.get(id=donacion_id)
 
 	donacion.estado = 'Recibida'
 	donacion.fecha_aceptacion = date.today()
 	donacion.save()
-	
+
+	producto = donacion.objecto_servicio
 	producto.estado = 'Donado'
 	producto.dueno = request.user
 	producto.save()
-	print("La donación fue aceptada")
 	return redirect('donacion:listar')
 
 @login_required
-def Rechazar(request, donacion_id, producto_id):
-	producto = Producto.objects.get(id=producto_id)
+def Rechazar(request, donacion_id):
 	donacion = Donacion.objects.get(id=donacion_id)
 
 	donacion.estado = 'Rechazada'
 	donacion.fecha_aceptacion = date.today()
 	donacion.save()
 
+	producto = donacion.objecto_servicio
 	producto.estado = 'Vigente'
 	producto.save()
-	print("La donación fue Rechazada")
 	return redirect('donacion:listar')
