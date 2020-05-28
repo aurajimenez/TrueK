@@ -25,7 +25,7 @@ def Modificar(request, usuario_id):
     usuario = Usuario.objects.get(id=usuario_id)
     form = ModificarUsuarioForm(instance=usuario)
     if request.method == "POST":
-        form = ModificarUsuarioForm(request.POST, instance=usuario)
+        form = ModificarUsuarioForm(request.POST, request.FILES, instance=usuario)
         if form.is_valid():
             usuario = form.save(commit=False)
             form.save()

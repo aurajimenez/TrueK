@@ -5,8 +5,8 @@ from .models import Intercambio, Producto, Usuario
 class RegistrarIntercambioForm(forms.ModelForm):
 	def __init__(self, oferente, *args, **kwargs):
 		super(RegistrarIntercambioForm, self).__init__(*args, **kwargs)
-		self.fields['producto_del_oferente'].queryset = Producto.objects.filter(dueno=oferente).exclude(estado='Donado').exclude(estado='Intercambiado')
-		self.fields['producto_del_receptor'].queryset = Producto.objects.exclude(dueno=oferente).exclude(estado='Donado').exclude(estado='Intercambiado')
+		self.fields['producto_del_oferente'].queryset = Producto.objects.filter(dueno=oferente).exclude(estado='Donado').exclude(estado='Intercambiado').exclude(estado='En proceso')
+		self.fields['producto_del_receptor'].queryset = Producto.objects.exclude(dueno=oferente).exclude(estado='Donado').exclude(estado='Intercambiado').exclude(estado='En proceso')
 
 	def clean(self):
 		cleaned_data = super().clean()

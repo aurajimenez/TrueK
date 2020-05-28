@@ -17,6 +17,9 @@ def Registrar(request):
 			donacion.donador = request.user
 			donacion.estado = 'Iniciada'
 			donacion.save()
+			producto = donacion.objecto_servicio
+			producto.estado = 'En proceso'
+			producto.save()
 			return redirect('donacion:listar')
 	else:
 		form = RegistrarDonacionForm(request.user)
@@ -66,4 +69,4 @@ def Rechazar(request, donacion_id, producto_id):
 	producto.estado = 'Vigente'
 	producto.save()
 	print("La donación fue Rechazada")
-	return render(request, "aceptar_donacion.html", {'donacion':donacion})
+	return redirect('donacion:listar')

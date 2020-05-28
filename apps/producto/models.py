@@ -8,6 +8,7 @@ class Producto(models.Model):
 		('Vigente','Vigente'),
 		('Donado','Donado'),
 		('Intercambiado','Intercambiado'),
+		('En proceso','En proceso'),
 	)
 
 	dueno = models.ForeignKey(Usuario, on_delete = models.CASCADE)

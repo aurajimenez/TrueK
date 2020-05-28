@@ -28,8 +28,8 @@ Intercambios
 									<p> <b>Fecha de aceptación/recepción del intercambio:</b> {{ intercambio.fecha_aceptacion_intercambio }}</p>
 							    {% endif %}	
                                 {% if intercambio.estado == "Iniciado" and intercambio.receptor == request.user %}
-							    <a class="btn btn-primary" href="">Aceptar</a>
-					            <a class="btn btn-danger" href="">Rechazar</a>
+							    <a class="btn btn-primary" href="{% url 'intercambio:aceptar' intercambio.id intercambio.producto_del_oferente.id %}">Aceptar</a>
+					            <a class="btn btn-danger" href="{% url 'intercambio:rechazar' intercambio.id intercambio.producto_del_oferente.id %}">Rechazar</a>
 					            {% endif %}	
                                 {% if intercambio.oferente == request.user and intercambio.estado == "Iniciado" %}
 							    <a class="btn btn-danger" href="">Cancelar</a>

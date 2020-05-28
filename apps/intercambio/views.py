@@ -19,6 +19,9 @@ def Registrar(request):
 			intercambio.receptor = intercambio.producto_del_receptor.dueno
 			intercambio.estado = 'Iniciado'
 			intercambio.save()
+			producto_del_oferente = intercambio.producto_del_oferente
+			producto_del_oferente.estado = 'En proceso'
+			producto_del_oferente.save()
 			return redirect('intercambio:listar')
 	else:
 		form = RegistrarIntercambioForm(request.user)
@@ -46,24 +49,23 @@ def Listar(request):
 def Aceptar(request, intercambio_id, producto_id):
 	producto = Producto.objects.get(id=producto_id)
 	intercambio = Intercambio.objects.get(id=intercambio_id)
-	if request.method == "POST":
-		intercambio.estado = 'Aceptado'
-		intercambio.fecha_aceptacion_intercambio = date.today()
-		intercambio.save()
-		producto.estado = 'Intercambiado'
-		producto.save()
-		contexto = { 'intercambio':intercambio, 'producto':producto}
-		print("El intercambio fue Aceptado")
-	return render(request, "aceptar_intercambio.html", contexto)
+	intercambio.estado = 'Aceptado'
+	intercambio.fecha_aceptacion_intercambio = date.today()
+	intercambio.save()
+	producto.estado = 'Intercambiado'
+	producto.save()
+	contexto = { 'intercambio':intercambio, 'producto':producto}
+	print("El intercambio fue Aceptado")
+	return redirect('intercambio:listar')
 
 @login_required
-def Rechazar(request, intercambio_id):
+def Rechazar(request, intercambio_id, producto_id):
+	producto = Producto.objects.get(id=producto_id)
 	intercambio = Intercambio.objects.get(id=intercambio_id)
-	if request.method == "POST":
-		intercambio.estado = 'Rechazado'
-		intercambio.fecha_aceptacion_intercambio = date.today()
-		intercambio.save()
-		producto.estado = 'Vigente'
-		producto.save()
-		print("El intercambio fue Rechazado")
-	return render(request, "aceptar_intercambio.html", {'intercambio':intercambio})
+	intercambio.estado = 'Rechazado'
+	intercambio.fecha_aceptacion_intercambio = date.today()
+	intercambio.save()
+	producto.estado = 'Vigente'
+	producto.save()
+	print("El intercambio fue Rechazado")
+	return redirect('intercambio:listar')

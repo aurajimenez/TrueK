@@ -9,24 +9,24 @@ Registrar Usuario
 
 {% block contenido %}
        
-<div class="span6">
-    <div class="widget-box">
-        <div class="widget-title"> 
-          <span class="icon"> 
-            <i class="icon-align-justify"></i> 
-          </span>
-          <h5>Registrar usuario</h5>
-        </div>
-        <div class="widget-content">
-            <form action="#" method="post" enctype="multipart/form-data">{% csrf_token %}
-                <table>
-                    {{ form.as_table }}
-                </table>
-                <input type="submit" value="Enviar">
-            </form>
+    <div class="span6">
+        <div class="widget-box">
+            <div class="widget-title"> 
+                <span class="icon"> 
+                    <i class="icon-align-justify"></i> 
+                </span>
+            <h5>Registrar usuario</h5>
+            </div>
+            <div class="widget-content">
+                <form action="#" method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-{% endblock %}
+{% endblock contenido %}
 
