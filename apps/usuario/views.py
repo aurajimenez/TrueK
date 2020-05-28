@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .models import Usuario
+from apps.producto.models import Producto
 from .forms import RegistrarUsuarioForm, ModificarUsuarioForm
 
 @login_required
@@ -40,13 +41,8 @@ def Listar(request):
 
 def Login(request):
     if request.method == 'POST':
-        print("Jojoa")
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            # los campos username y password son los que utiliza el form: "AuthenticationForm"
-            # en mi caso accedí como el usuario que acabo de crear
-            # cono
-            # cono
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
@@ -66,3 +62,7 @@ def Login(request):
 def Logout(request):
     logout(request)
     return redirect("usuario:login")
+
+def Inicio(request):
+    productos = Producto.objects.all()
+    return render(request, "inicio.html", {'productos':productos})

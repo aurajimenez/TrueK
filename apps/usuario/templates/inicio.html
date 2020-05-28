@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Inicio 
+{% endblock %}
+
+{% block barra_busqueda %} 
+{% endblock barra_busqueda %}
+
+{% block contenido %}
+
+
+	{% for producto in productos %}
+	{% if not producto.dueno == request.user %}
+		<div class="container-fluid">
+		    <div class="row-fluid">
+				<div class="span4">
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon">
+								<i class="icon-briefcase"></i>
+							</span>
+								<h5>{{ producto.nombre|upper }}</h5>
+						</div>
+						<div class="widget-content">
+							<div class="widget-content">
+									<img src="{{ producto.foto.url }}" style="width: 150px;">
+							</div>
+							<br>
+							<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
+							<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
+							<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
+							<p> <b>Dueño:</b>  {{ producto.dueno|capfirst }} </p>
+						<a class="btn btn-success" href="{% url 'intercambio:registrar'%}">Intercambiar</a></div>
+
+					</div>
+				</div>
+			</div>	
+		</div>
+		{% endif %}
+	{% endfor %}
+{% endblock contenido %}

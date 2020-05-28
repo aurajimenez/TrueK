@@ -10,5 +10,6 @@ urlpatterns = [
 	path('listar', views.Listar, name="listar"),
 	path('login', views.Login, name="login"),
 	path('logout', views.Logout, name="logout"),
+    path('inicio', views.Inicio, name='inicio'),
 
 ]
