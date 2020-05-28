@@ -15,10 +15,11 @@ class RegistrarUsuarioForm(UserCreationForm):
 		fields = ('username', 'first_name', 'last_name', 'email', 'telefono','localizacion', 'photo',)
 
 class ModificarUsuarioForm(forms.ModelForm):
+	photo = forms.ImageField(label="Foto", required=False)
 
 	class Meta:
 		model = Usuario
-		fields = ('username', 'first_name', 'last_name', 'email', 'password', 'telefono','localizacion','photo',)
+		fields = ('username', 'first_name', 'last_name', 'email', 'telefono','localizacion','photo',)
 
 class LoginUsarioForm(forms.ModelForm):
 	username = forms.CharField(widget=forms.TextInput)
