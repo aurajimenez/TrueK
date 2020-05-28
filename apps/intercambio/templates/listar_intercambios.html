@@ -32,6 +32,7 @@ Intercambios
 					            <a class="btn btn-danger" href="{% url 'intercambio:rechazar' intercambio.id %}">Rechazar</a>
 					            {% endif %}	
                                 {% if intercambio.oferente == request.user and intercambio.estado == "Iniciado" %}
+							    <a class="btn btn-danger" href="{% url 'intercambio:modificar' intercambio.id %}">Modificar</a>
 							    <a class="btn btn-danger" href="">Cancelar</a>
 					            {% endif %}							            			            
 						</div>

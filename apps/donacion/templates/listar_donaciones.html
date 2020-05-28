@@ -25,6 +25,7 @@
 									<p> <b>Fecha de aceptación/recepción de la donación:</b> {{ donacion.fecha_aceptacion }}</p>
 							    {% endif %}
 							    {% if donacion.estado == "Iniciada" and donacion.donador == request.user %}
+					<a class="btn btn-primary" href="{% url 'donacion:modificar' donacion.id %}">Modificar</a>
                     <a class="btn btn-danger" href="">Cancelar</a>
 					            {% endif %}	
 					            {% if donacion.estado == "Iniciada" and donacion.receptor == request.user %}
