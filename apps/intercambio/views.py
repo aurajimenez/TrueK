@@ -19,6 +19,7 @@ def Registrar(request):
 			intercambio.receptor = intercambio.producto_del_receptor.dueno
 			intercambio.estado = 'Iniciado'
 			intercambio.save()
+
 			producto_del_oferente = intercambio.producto_del_oferente
 			producto_del_oferente.estado = 'En proceso'
 			producto_del_oferente.save()
@@ -46,27 +47,32 @@ def Listar(request):
 	return render(request, "listar_intercambios.html", {'intercambios':intercambios})
 
 @login_required
-def Aceptar(request, intercambio_id, producto_id):
-	producto = Producto.objects.get(id=producto_id)
+def Aceptar(request, intercambio_id):
 	intercambio = Intercambio.objects.get(id=intercambio_id)
 	intercambio.estado = 'Aceptado'
 	intercambio.fecha_aceptacion_intercambio = date.today()
 	intercambio.save()
-	producto.estado = 'Intercambiado'
-	producto.dueno = request.user
-	producto.save()
-	contexto = { 'intercambio':intercambio, 'producto':producto}
-	print("El intercambio fue Aceptado")
+
+	producto_del_oferente = intercambio.producto_del_oferente
+	producto_del_oferente.estado = 'Intercambiado'
+	producto_del_oferente.dueno = request.user
+	producto_del_oferente.save()
+
+	producto_del_receptor = intercambio.producto_del_receptor
+	producto_del_receptor.estado = 'Intercambiado'
+	producto_del_receptor.dueno = intercambio.oferente
+	producto_del_receptor.save()
+
+	contexto = { 'intercambio':intercambio, 'producto_del_oferente':producto_del_oferente, 'producto_del_receptor':producto_del_receptor }
 	return redirect('intercambio:listar')
 
 @login_required
-def Rechazar(request, intercambio_id, producto_id):
-	producto = Producto.objects.get(id=producto_id)
+def Rechazar(request, intercambio_id):
 	intercambio = Intercambio.objects.get(id=intercambio_id)
 	intercambio.estado = 'Rechazado'
 	intercambio.fecha_aceptacion_intercambio = date.today()
 	intercambio.save()
-	producto.estado = 'Vigente'
-	producto.save()
-	print("El intercambio fue Rechazado")
+	producto_del_oferente = intercambio.producto_del_oferente
+	producto_del_oferente.estado = 'Vigente'
+	producto_del_oferente.save()
 	return redirect('intercambio:listar')
