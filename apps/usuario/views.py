@@ -69,20 +69,16 @@ def Inicio(request):
 
 def Perfil(request, usuario_id):
     usuario = Usuario.objects.get(id=usuario_id)
-
-    primer_nombre = usuario.first_name
-    apellido = usuario.last_name
-    email = usuario.email
+    first_name = usuario.first_name
+    last_name = usuario.last_name
     telefono = usuario.telefono
+    localizacion = usuario.localizacion
+    email = usuario.email
 
     contexto = {
-
-    'primer_nombre':primer_nombre,
-    'apellido': apellido,
-    'email': email,
-    'telefono': telefono,
-
+    'usuario':usuario,
     }
+
     return render(request, "perfil_usuario.html", {'contexto':contexto})
 
 @login_required

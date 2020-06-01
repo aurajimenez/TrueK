@@ -1,32 +1,20 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% block title %}
 Registrar Usuario 
 {% endblock %}
 
-{% block barra_busqueda %} 
-{% endblock barra_busqueda %}
+
 
 {% block contenido %}
-       
-    <div class="span6">
-        <div class="widget-box">
-            <div class="widget-title"> 
-                <span class="icon"> 
-                    <i class="icon-align-justify"></i> 
-                </span>
-            <h5>Registrar usuario</h5>
-            </div>
-            <div class="widget-content">
+       <div class="container">
+
                 <form action="#" method="post" enctype="multipart/form-data">{% csrf_token %}
                     <table>
                         {{ form.as_table }}
                     </table>
                     <input type="submit" value="Enviar">
                 </form>
-            </div>
         </div>
-    </div>
-
 {% endblock contenido %}
 

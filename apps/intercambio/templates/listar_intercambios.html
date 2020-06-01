@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% block title %}
 Intercambios 
@@ -6,19 +6,24 @@ Intercambios
 
 {% block contenido %}
 
+  <div class="container">
+        <div class="row">
 {% for intercambio in intercambios %}
 	{% if intercambio.oferente == request.user or intercambio.receptor == request.user %}
-		<div class="container-fluid">
-            <div class="row-fluid">
-				<div class="span4">
-					<div class="widget-box">
-						<div class="widget-title">
-							<span class="icon">
-								<i class="icon-tag"></i>
-							</span>
-							<h5>{{ intercambio.id|upper }}</h5>
-						</div>
-						<div class="widget-content ">
+
+            <div class="col-lg-6 mb-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">ID: {{ intercambio.id|upper }}</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
 							<p> <b>Oferente:</b> {{ intercambio.oferente }}</p>
 							<p> <b>Producto 1:</b> {{ intercambio.producto_del_oferente }}</p>	<p> <b>Producto 2:</b> {{ intercambio.producto_del_receptor }}</p>
 							<p> <b>Receptor:</b> {{ intercambio.receptor }}</p>
@@ -35,15 +40,15 @@ Intercambios
 							    <a class="btn btn-primary" href="{% url 'intercambio:modificar' intercambio.id %}">Modificar</a>
 							    <a class="btn btn-danger" href="{% url 'intercambio:cancelar' intercambio.id %}">Cancelar</a>
 					            {% endif %}							            			            
-						</div>
-					</div>
-				</div>
-	        </div>	
-        </div>
+  </div>
+              </div>
+            </div>
     {% endif %}
     {% if not intercambio %}
     <p>No haz realizado ningún intercambio, te invitamos a hacerlo!!</p>
     {% endif %}   
 {% endfor %}
+</div>
+</div>
 {% endblock contenido %}
 

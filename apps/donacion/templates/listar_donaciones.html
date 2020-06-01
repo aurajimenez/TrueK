@@ -1,21 +1,24 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% block title %}Donaciones {% endblock %}
 
 {% block contenido %}
-
+  <div class="container">
+        <div class="row">
 {% for donacion in donaciones %}
-		<div class="container-fluid">
-            <div class="row-fluid">
-				<div class="span4">
-					<div class="widget-box">
-						<div class="widget-title">
-							<span class="icon">
-								<i class="icon-user"></i>
-							</span>
-							<h5>{{ donacion.id|upper }}</h5>
-						</div>
-						<div class="widget-content">
+            <div class="col-lg-6 mb-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">ID: {{ donacion.id|upper }}</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
 							<p> <b>Donador:</b> {{ donacion.donador }}</p>
 							<p> <b>Objecto o servicio donado:</b> {{ donacion.objecto_servicio }}</p>
 							<p> <b>Beneficiado:</b> {{ donacion.receptor }}</p>
@@ -32,15 +35,15 @@
                     <a class="btn btn-primary" href="{% url 'donacion:aceptar' donacion.id %}">Aceptar</a>
                     <a class="btn btn-danger" href="{% url 'donacion:rechazar' donacion.id %}">Rechazar</a>
 					            {% endif %}							
-				        </div>
-				    </div>
-			    </div>
-	        </div>	
-        </div>
+                </div>
+              </div>
+            </div>
     {% if not donacion %}
     <div><p>No haz realizado ninguna donacion, te invitamos a hacerlo!!</p></div>
     
     {% endif %} 
 {% endfor %}
+</div>
+</div>
 {% endblock contenido %}
 
