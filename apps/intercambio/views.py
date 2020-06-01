@@ -76,3 +76,11 @@ def Rechazar(request, intercambio_id):
 	producto_del_oferente.estado = 'Vigente'
 	producto_del_oferente.save()
 	return redirect('intercambio:listar')
+
+def Cancelar(request, intercambio_id):
+	intercambio = Intercambio.objects.get(id=intercambio_id)
+	producto_del_oferente = intercambio.producto_del_oferente
+	producto_del_oferente.estado = 'Vigente'
+	producto_del_oferente.save()
+	intercambio.delete()
+	return redirect('intercambio:listar')

@@ -10,4 +10,5 @@ urlpatterns = [
 	path('listar', views.Listar, name="listar"),
 	path('aceptar/<int:intercambio_id>', views.Aceptar, name='aceptar'),
 	path('rechazar/<int:intercambio_id>', views.Rechazar, name='rechazar'),
+	path('cancelar/<int:intercambio_id>', views.Cancelar, name='cancelar'),
 ]
