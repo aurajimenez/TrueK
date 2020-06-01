@@ -12,5 +12,6 @@ urlpatterns = [
 	path('logout', views.Logout, name="logout"),
     path('inicio', views.Inicio, name='inicio'),
     path('perfil/<int:usuario_id>', views.Perfil, name='perfil'),
+    path('cambiar_contrasena/<int:usuario_id>', views.Cambiar_contrasena, name='cambiar_contrasena'),
 
 ]

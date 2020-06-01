@@ -24,3 +24,10 @@ class ModificarUsuarioForm(forms.ModelForm):
 class LoginUsarioForm(forms.ModelForm):
 	username = forms.CharField(widget=forms.TextInput)
 	password = forms.CharField(widget=forms.TextInput)
+
+class CambiarContrasenaForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput)
+
+	class Meta:
+		model = Usuario
+		fields = ('password',)

@@ -32,16 +32,21 @@
 {% block barra_usuario %}
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
-    <li class="" ><a title="" href="{% url 'usuario:perfil' request.user.id %}"><i class="icon icon-user"></i> <span class="text">{{ request.user }}</span></a></li>
-    <li class=" dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a class="sAdd" title="" href="#">new message</a></li>
-        <li><a class="sInbox" title="" href="#">inbox</a></li>
-        <li><a class="sOutbox" title="" href="#">outbox</a></li>
-        <li><a class="sTrash" title="" href="#">trash</a></li>
-      </ul>
-    </li>
-    <li class=""><a title="" href="{% url 'usuario:logout'%}"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+        <li class="dropdown" id="menu-perfil"><a href="#" data-toggle="dropdown" data-target="#menu-perfil" class="dropdown-toggle"><i class="icon icon-user"></i> <span class="text">{{ request.user|capfirst }}</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a class="sAdd" title="" href="{% url 'usuario:perfil' user.id %}">Mi perfil</a></li>
+            <li><a class="sInbox" title="" href="{% url 'usuario:cambiar_contrasena' user.id %}">Cambiar contraseña</a></li>
+          </ul>
+        </li>
+        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Mensajes</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a class="sAdd" title="" href="#">Nuevo mensaje</a></li>
+            <li><a class="sInbox" title="" href="#">Recibidos</a></li>
+            <li><a class="sOutbox" title="" href="#">Salientes</a></li>
+          </ul>
+        </li>
+        <li class=""><a title="" href="{% url 'usuario:logout'%}"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a>
+        </li>
   </ul>
 </div>
 {% endblock barra_usuario %}

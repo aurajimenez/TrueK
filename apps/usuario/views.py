@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Usuario
 from apps.producto.models import Producto
-from .forms import RegistrarUsuarioForm, ModificarUsuarioForm
+from .forms import RegistrarUsuarioForm, ModificarUsuarioForm, CambiarContrasenaForm
 
 @login_required
 def Registrar(request):
@@ -84,3 +84,18 @@ def Perfil(request, usuario_id):
 
     }
     return render(request, "perfil_usuario.html", {'contexto':contexto})
+
+@login_required
+def Cambiar_contrasena(request, usuario_id):
+    usuario = Usuario.objects.get(id=usuario_id)
+    form = CambiarContrasenaForm(instance=usuario)
+    if request.method == "POST":
+        form = CambiarContrasenaForm(request.POST, instance=usuario)
+        if form.is_valid():
+            usuario = form.save(commit=False)
+            usuario.password = password
+            usuario.save()
+            return redirect('usuario:listar')
+    else:
+        form = CambiarContrasenaForm()
+    return render(request, "cambiar_contrasena.html", {'usuario':usuario})
