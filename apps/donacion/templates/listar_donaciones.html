@@ -26,7 +26,7 @@
 							    {% endif %}
 							    {% if donacion.estado == "Iniciada" and donacion.donador == request.user %}
 					<a class="btn btn-primary" href="{% url 'donacion:modificar' donacion.id %}">Modificar</a>
-                    <a class="btn btn-danger" href="">Cancelar</a>
+                    <a class="btn btn-danger" href="{% url 'donacion:cancelar' donacion.id %}">Cancelar</a>
 					            {% endif %}	
 					            {% if donacion.estado == "Iniciada" and donacion.receptor == request.user %}
                     <a class="btn btn-primary" href="{% url 'donacion:aceptar' donacion.id %}">Aceptar</a>

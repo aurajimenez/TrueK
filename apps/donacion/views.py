@@ -69,3 +69,13 @@ def Rechazar(request, donacion_id):
 	producto.estado = 'Vigente'
 	producto.save()
 	return redirect('donacion:listar')
+
+def Cancelar(request, donacion_id):
+	donacion = Donacion.objects.get(id=donacion_id)
+	producto = donacion.objecto_servicio
+	producto.estado = 'Vigente'
+	producto.save()
+	donacion.delete()
+	return redirect('donacion:listar')
+
+
