@@ -77,6 +77,7 @@ def Rechazar(request, intercambio_id):
 	producto_del_oferente.save()
 	return redirect('intercambio:listar')
 
+@login_required
 def Cancelar(request, intercambio_id):
 	intercambio = Intercambio.objects.get(id=intercambio_id)
 	producto_del_oferente = intercambio.producto_del_oferente
@@ -84,3 +85,19 @@ def Cancelar(request, intercambio_id):
 	producto_del_oferente.save()
 	intercambio.delete()
 	return redirect('intercambio:listar')
+
+@login_required
+def Perfil(request, intercambio_id):
+    intercambio = Intercambio.objects.get(id=intercambio_id)
+    producto_del_oferente = intercambio.producto_del_oferente
+    producto_del_receptor = intercambio.producto_del_receptor
+    receptor = intercambio.receptor
+    estado = intercambio.estado
+    fecha_solicitud_intercambio = intercambio.fecha_solicitud_intercambio
+    fecha_aceptacion_intercambio = intercambio.fecha_aceptacion_intercambio
+
+    contexto = {
+    'intercambio':intercambio,
+    }
+
+    return render(request, "perfil_intercambio.html", {'intercambio':intercambio})

@@ -11,5 +11,5 @@ urlpatterns = [
 	path('aceptar/<int:donacion_id>', views.Aceptar, name='aceptar'),
 	path('rechazar/<int:donacion_id>', views.Rechazar, name='rechazar'),
 	path('cancelar/<int:donacion_id>', views.Cancelar, name='cancelar'),
-
+    path('perfil/<int:donacion_id>', views.Perfil, name='perfil'),
 ]

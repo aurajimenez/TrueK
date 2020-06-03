@@ -7,12 +7,10 @@ Productos
 
 {% block contenido %}
   <div class="container">
-        <div class="row">
+        <div class="row"> 
 
 	{% for producto in productos %}
-
-
-            <div class="col-lg-6 mb-4">
+    <a href="{% url 'producto:perfil' producto.id %}">        <div class="col-lg-6 mb-4" >
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -38,7 +36,7 @@ Productos
                 </div>
               </div>
             </div>
-	{% endfor %}
+</a>	{% endfor %}
 </div>
 </div>
 {% endblock contenido %}

@@ -63,10 +63,12 @@ def Logout(request):
     logout(request)
     return redirect("usuario:login")
 
+@login_required
 def Inicio(request):
     productos = Producto.objects.all()
     return render(request, "inicio.html", {'productos':productos})
 
+@login_required
 def Perfil(request, usuario_id):
     usuario = Usuario.objects.get(id=usuario_id)
     first_name = usuario.first_name
@@ -77,9 +79,14 @@ def Perfil(request, usuario_id):
 
     contexto = {
     'usuario':usuario,
+    'first_name':first_name,
+    'last_name': last_name,
+    'telefono': telefono,
+    'localizacion':localizacion,
+    'email':email,
     }
 
-    return render(request, "perfil_usuario.html", {'contexto':contexto})
+    return render(request, "perfil_usuario.html", {'usuario':usuario})
 
 @login_required
 def Cambiar_contrasena(request, usuario_id):

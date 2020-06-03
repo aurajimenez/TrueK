@@ -70,6 +70,7 @@ def Rechazar(request, donacion_id):
 	producto.save()
 	return redirect('donacion:listar')
 
+@login_required
 def Cancelar(request, donacion_id):
 	donacion = Donacion.objects.get(id=donacion_id)
 	producto = donacion.objecto_servicio
@@ -78,4 +79,18 @@ def Cancelar(request, donacion_id):
 	donacion.delete()
 	return redirect('donacion:listar')
 
+@login_required
+def Perfil(request, donacion_id):
+    donacion = Donacion.objects.get(id=donacion_id)
+    donador = donacion.donador
+    receptor = donacion.receptor
+    objecto_servicio = donacion.objecto_servicio
+    estado = donacion.estado
+    fecha_donacion = donacion.fecha_donacion
+    fecha_aceptacion = donacion.fecha_aceptacion
 
+    contexto = {
+    'donacion':donacion,
+    }
+
+    return render(request, "perfil_donacion.html", {'donacion':donacion})

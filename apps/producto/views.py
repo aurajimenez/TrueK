@@ -34,4 +34,16 @@ def Listar(request):
 	productos = Producto.objects.filter(dueno=request.user)
 	return render(request, "listar_productos.html", {'productos':productos})
 
+@login_required
+def Perfil(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    nombre = producto.nombre
+    descripcion = producto.descripcion
+    etiquetas = producto.etiquetas
+    estado = producto.estado
 
+    contexto = {
+    'producto':producto,
+    }
+
+    return render(request, "perfil_producto.html", {'producto':producto})

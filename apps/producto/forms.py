@@ -4,7 +4,7 @@ from .models import Producto
 
 class RegistrarProductoForm(forms.ModelForm):
 
-	descripcion = forms.CharField(required=True, widget=forms.Textarea)
+	descripcion = forms.CharField(required=True, widget=forms.Textarea, label="Descripción")
 
 	class Meta:
 		model = Producto

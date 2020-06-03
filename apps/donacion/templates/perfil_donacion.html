@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %} 
-   Usuarios 
+   Productos 
 {% endblock %}
 
 {% block barra_busqueda %}
@@ -16,7 +16,7 @@
   <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <h6 class="m-0 font-weight-bold text-primary">{{ usuario.first_name|capfirst}} {{ usuario.last_name|capfirst }}</h6>
+      <h6 class="m-0 font-weight-bold text-primary">{{ donacion.id|capfirst}}</h6>
       <div class="dropdown no-arrow">
         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -28,9 +28,12 @@
 
 							<img src="{% static 'img/th2.png' %}" style="width: 150px;">
 						 <hr class="sidebar-divider">
-						<p> <b>Teléfono:</b> {{ usuario.telefono }} </p>
-						<p> <b>Localización:</b> {{ usuario.localizacion }} </p>
-						<p> <b>Correo electrónico:</b> {{ usuario.email }} </p>
+						<p> <b>donador:</b> {{ donacion.donador }} </p>
+						<p> <b>objecto_servicio:</b> {{ donacion.objecto_servicio }} </p>
+						<p> <b>receptor:</b> {{ donacion.receptor }} </p>
+            <p> <b>Estado:</b> {{ donacion.estado }} </p>
+            <p> <b>fecha_donacion:</b> {{ donacion.fecha_donacion }} </p>
+            <p> <b>fecha_aceptacion:</b> {{ donacion.fecha_aceptacion }} </p>
 					</div>
 				</div>
    </div>
