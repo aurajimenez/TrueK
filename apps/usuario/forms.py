@@ -8,7 +8,6 @@ class RegistrarUsuarioForm(UserCreationForm):
 	email = forms.CharField(label="Correo electrónico")
 	telefono = forms.CharField(label="Teléfono", required=True)
 	localizacion = forms.CharField(label="Localización", required=True)
-	photo = forms.ImageField(label="Foto", required=False)
 
 	class Meta:
 		model = Usuario

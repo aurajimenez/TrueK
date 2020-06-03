@@ -1,11 +1,14 @@
 {% extends "index.html" %}
 
-{% block title %}Donaciones {% endblock %}
+{% block title %}
+Donaciones 
+{% endblock %}
 
 {% block contenido %}
   <div class="container">
         <div class="row">
 {% for donacion in donaciones %}
+<a href="{% url 'donacion:perfil' donacion.id %}"> 
             <div class="col-lg-6 mb-4">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
@@ -42,6 +45,7 @@
     <div><p>No haz realizado ninguna donacion, te invitamos a hacerlo!!</p></div>
     
     {% endif %} 
+  </a>
 {% endfor %}
 </div>
 </div>

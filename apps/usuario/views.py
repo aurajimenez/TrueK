@@ -76,6 +76,7 @@ def Perfil(request, usuario_id):
     telefono = usuario.telefono
     localizacion = usuario.localizacion
     email = usuario.email
+    photo = Usuario.photo
 
     contexto = {
     'usuario':usuario,
@@ -97,7 +98,7 @@ def Cambiar_contrasena(request, usuario_id):
         if form.is_valid():
             usuario = form.save(commit=False)
             usuario.password = password
-            usuario.save()
+            usuario.update()
             return redirect('usuario:listar')
     else:
         form = CambiarContrasenaForm()

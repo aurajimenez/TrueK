@@ -10,7 +10,7 @@ Intercambios
         <div class="row">
 {% for intercambio in intercambios %}
 	{% if intercambio.oferente == request.user or intercambio.receptor == request.user %}
-
+<a href="{% url 'intercambio:perfil' intercambio.id %}"> 
             <div class="col-lg-6 mb-4">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
@@ -43,6 +43,7 @@ Intercambios
   </div>
               </div>
             </div>
+          </a>
     {% endif %}
     {% if not intercambio %}
     <p>No haz realizado ningún intercambio, te invitamos a hacerlo!!</p>

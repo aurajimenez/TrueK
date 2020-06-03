@@ -92,5 +92,4 @@ def Perfil(request, donacion_id):
     contexto = {
     'donacion':donacion,
     }
-
     return render(request, "perfil_donacion.html", {'donacion':donacion})
