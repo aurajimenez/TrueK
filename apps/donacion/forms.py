@@ -25,6 +25,27 @@ class RegistrarDonacionForm(forms.ModelForm):
 		model = Donacion
 		fields = ('objecto_servicio', 'receptor',)
 
+class RegistrarDonacionDesdeProductoForm(forms.ModelForm):
+	def __init__(self, donador, producto, *args, **kwargs):
+		super(RegistrarDonacionDesdeProductoForm, self).__init__(*args, **kwargs)
+		self.fields["objecto_servicio"].queryset = Producto.objects.filter(id=producto.id)
+		self.fields["receptor"].queryset = Usuario.objects.exclude(id=donador.id)
+		self.initial["objecto_servicio"] = producto
+
+	def clean(self):
+		cleaned_data = super().clean()
+		donador = cleaned_data.get("donador")
+		receptor = cleaned_data.get("receptor")
+
+		if donador == receptor:
+			mensaje = "El receptor no puede ser el mismo donador"
+			self.add_error('donador', mensaje)
+			self.add_error('receptor', mensaje)
+
+	class Meta:
+		model = Donacion
+		fields = ('objecto_servicio', 'receptor',)
+
 class ModificarDonacionForm(forms.ModelForm):
 
 	def clean(self):

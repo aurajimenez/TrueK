@@ -13,5 +13,6 @@ urlpatterns = [
     path('inicio', views.Inicio, name='inicio'),
     path('perfil/<int:usuario_id>', views.Perfil, name='perfil'),
     path('cambiar_contrasena/<int:usuario_id>', views.Cambiar_contrasena, name='cambiar_contrasena'),
+    path('preguntas_frecuentes', views.Preguntas_Frecuentes, name='preguntas_frecuentes'),
 
 ]

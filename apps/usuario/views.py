@@ -49,7 +49,7 @@ def Login(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username} ")
-                return redirect('usuario:listar')
+                return redirect('usuario:inicio')
             else:
                 messages.error(request, "Invalid username or password.")
         else:
@@ -76,7 +76,6 @@ def Perfil(request, usuario_id):
     telefono = usuario.telefono
     localizacion = usuario.localizacion
     email = usuario.email
-    photo = Usuario.photo
 
     contexto = {
     'usuario':usuario,
@@ -103,3 +102,6 @@ def Cambiar_contrasena(request, usuario_id):
     else:
         form = CambiarContrasenaForm()
     return render(request, "cambiar_contrasena.html", {'usuario':usuario})
+
+def Preguntas_Frecuentes(request):
+    return render(request, "preguntas_frecuentes.html")

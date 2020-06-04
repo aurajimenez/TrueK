@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from datetime import date, datetime
 
-from .forms import RegistrarDonacionForm, ModificarDonacionForm
+from .forms import RegistrarDonacionForm, ModificarDonacionForm,RegistrarDonacionDesdeProductoForm
 from .models import Donacion, Producto
 
 @login_required
@@ -23,6 +23,25 @@ def Registrar(request):
 			return redirect('donacion:listar')
 	else:
 		form = RegistrarDonacionForm(request.user)
+	return render(request, 'registrar_donacion.html', {'form': form})
+
+@login_required
+def RegistrarDesdeProducto(request, producto_id):
+	producto = Producto.objects.get(id=producto_id)
+	if request.method == 'POST':
+		form = RegistrarDonacionDesdeProductoForm(request.user, request.POST, producto)	
+		if form.is_valid():
+			usuario_actual = Donacion(donador = request.user)
+			donacion = form.save(commit=False)
+			donacion.donador = request.user
+			donacion.estado = 'Iniciada'
+			donacion.save()
+			producto = producto.objecto_servicio
+			producto.estado = 'En proceso'
+			producto.save()
+			return redirect('donacion:listar')
+	else:
+		form = RegistrarDonacionDesdeProductoForm(request.user, producto)
 	return render(request, 'registrar_donacion.html', {'form': form})
 
 @login_required

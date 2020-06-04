@@ -25,11 +25,8 @@
     </div>
     <!-- Card Body -->
     <div class="card-body">
-              {% if not usuario.photo.url %}
-							<img src="{% static 'img/default-user-image.png' %}" style="width: 200px;">
-              {% else %}
-              <img src="{{usuario.photo.url}}" style="width: 200px;">
-              {% endif %}
+              <img src="{{ usuario.photo.url }}" style="width: 200px;">
+
 						 <hr class="sidebar-divider">
 						<p> <b>Teléfono:</b> {{ usuario.telefono }} </p>
 						<p> <b>Localización:</b> {{ usuario.localizacion }} </p>

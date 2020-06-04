@@ -8,9 +8,15 @@ Productos
 {% block contenido %}
   <div class="container">
         <div class="row"> 
-
-	{% for producto in productos %}
-    <a href="{% url 'producto:perfil' producto.id %}">        <div class="col-lg-6 mb-4" >
+          
+	{% for producto in productos %}  
+  {% if not producto and user.request == producto.dueno %}
+            <div class="container">
+                <p>No tienes productos registrados, te invitamos a hacerlo!!</p>
+            </div>
+            {% endif %}  
+    <a href="{% url 'producto:perfil' producto.id %}">       
+     <div class="col-lg-6 mb-4" >
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -24,19 +30,23 @@ Productos
                 <!-- Card Body -->
                 <div class="card-body">
          
-               <img src="{{producto.foto.url}}" style="width: 200px;">
+                  <img src="{% if producto.foto.url %} {{ producto.foto.url }}
+                  {% else %}
+                            {% static 'media/th2.png' %}
+                  {% endif %}" style="width: 200px;">
   							<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
 							<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
 							<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
 							<p> <b>Foto:</b>  </p>
 
-							<a class="btn btn-success" href="{% url 'donacion:registrar' %}">Donar</a>
+							<a class="btn btn-success" href="{% url 'donacion:registrar_desde_producto' producto.id%}">Donar</a>
 							<a class="btn btn-primary" href="{% url 'producto:modificar' producto.id %}">Modificar</a>
                 
                 </div>
               </div>
             </div>
-</a>	{% endfor %}
+</a>	
+{% endfor %}
 </div>
 </div>
 {% endblock contenido %}
