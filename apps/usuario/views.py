@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Usuario
 from apps.producto.models import Producto
+from apps.intercambio.models import Intercambio
 from .forms import RegistrarUsuarioForm, ModificarUsuarioForm, CambiarContrasenaForm
 
 @login_required

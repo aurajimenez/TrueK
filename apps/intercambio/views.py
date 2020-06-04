@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from datetime import date, datetime
 
-from .forms import RegistrarIntercambioForm, ModificarIntercambioForm
+from .forms import RegistrarIntercambioForm, ModificarIntercambioForm, RegistrarIntercambioDesdeProductoForm
 from .models import Intercambio, Producto
 
 @login_required
@@ -26,6 +26,28 @@ def Registrar(request):
 			return redirect('intercambio:listar')
 	else:
 		form = RegistrarIntercambioForm(request.user)
+	return render(request, 'registrar_intercambio.html', {'form': form})
+
+@login_required
+def RegistrarDesdeProducto(request, producto_id):
+	producto_del_receptor = Producto.objects.get(id=producto_id)	
+	if request.method == 'POST':
+		form = RegistrarIntercambioDesdeProductoForm(request.user, request.POST, producto_del_receptor)
+		if form.is_valid():
+			usuario_actual = Intercambio(oferente = request.user)
+			intercambio = form.save(commit=False)
+			intercambio.oferente = request.user
+			intercambio.receptor = intercambio.producto_del_oferente.dueno
+			intercambio.receptor = intercambio.producto_del_receptor.dueno
+			intercambio.estado = 'Iniciado'
+			intercambio.save()
+
+			producto_del_oferente = intercambio.producto_del_oferente
+			producto_del_oferente.estado = 'En proceso'
+			producto_del_oferente.save()
+			return redirect('intercambio:listar')
+	else:
+		form = RegistrarIntercambioDesdeProductoForm(request.user, producto_del_receptor)
 	return render(request, 'registrar_intercambio.html', {'form': form})
 
 @login_required

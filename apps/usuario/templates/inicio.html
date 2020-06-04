@@ -95,7 +95,7 @@ Inicio
 								<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
 								<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
 								<p> <b>Dueño:</b>  {{ producto.dueno|capfirst }} </p>
-								<a class="btn btn-success" href="{% url 'intercambio:registrar'%}">Solicitar intercambio</a>
+								<a class="btn btn-success" href="{% url 'intercambio:registrar_desde_producto' producto.id %}">Solicitar intercambio</a>
 							</div>
 						</div>
 					</div>	
