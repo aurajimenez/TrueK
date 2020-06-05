@@ -29,14 +29,14 @@ def Registrar(request):
 def RegistrarDesdeProducto(request, producto_id):
 	producto = Producto.objects.get(id=producto_id)
 	if request.method == 'POST':
-		form = RegistrarDonacionDesdeProductoForm(request.user, request.POST, producto)	
+		form = RegistrarDonacionDesdeProductoForm(request.user, producto, data=request.POST)	
 		if form.is_valid():
 			usuario_actual = Donacion(donador = request.user)
 			donacion = form.save(commit=False)
 			donacion.donador = request.user
 			donacion.estado = 'Iniciada'
 			donacion.save()
-			producto = producto.objecto_servicio
+			producto = donacion.objecto_servicio
 			producto.estado = 'En proceso'
 			producto.save()
 			return redirect('donacion:listar')

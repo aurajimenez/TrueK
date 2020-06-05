@@ -28,7 +28,7 @@
               {% if not producto.foto.url %}
 							<img src="{% static 'img/product.jpg' %}" style="width: 550px;">
               {% else %}
-              <img src="{{producto.foto.url}}" style="width: 200px;">
+              <img src="{{producto.foto.url}}" style="width: 250px; border-radius: 8px; height: 250px;">
               {% endif %}              
 						 <hr class="sidebar-divider">
 						<p> <b>Descripción:</b> {{ producto.descripcion }} </p>

@@ -32,7 +32,7 @@ def Registrar(request):
 def RegistrarDesdeProducto(request, producto_id):
 	producto_del_receptor = Producto.objects.get(id=producto_id)	
 	if request.method == 'POST':
-		form = RegistrarIntercambioDesdeProductoForm(request.user, request.POST, producto_del_receptor)
+		form = RegistrarIntercambioDesdeProductoForm(request.user, producto_del_receptor, data=request.POST)
 		if form.is_valid():
 			usuario_actual = Intercambio(oferente = request.user)
 			intercambio = form.save(commit=False)
@@ -52,7 +52,7 @@ def RegistrarDesdeProducto(request, producto_id):
 
 @login_required
 def Modificar(request, intercambio_id):
-	donacion = Intercambio.objects.get(id=intercambio_id)
+	intercambio = Intercambio.objects.get(id=intercambio_id)
 	form = ModificarIntercambioForm(instance=intercambio)
 	if request.method == "POST":
 		form = ModificarIntercambioForm(request.POST, instance=intercambio)

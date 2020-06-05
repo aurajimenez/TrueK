@@ -30,10 +30,10 @@ Donaciones
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                <p> <b>Donador:</b> {{ donacion.donador }}</p>
-                                <p> <b>Objecto o servicio donado:</b> {{ donacion.objecto_servicio }}</p>
-                                <p> <b>Beneficiado:</b> {{ donacion.receptor }}</p>
-                                <p> <b>Estado de la donación:</b> {{ donacion.estado }}</p>
+                                <p> <b>Donador:</b> {{ donacion.donador|capfirst }}</p>
+                                <p> <b>Objecto o servicio donado:</b> {{ donacion.objecto_servicio|capfirst }}</p>
+                                <p> <b>Beneficiado:</b> {{ donacion.receptor|capfirst }}</p>
+                                <p> <b>Estado de la donación:</b> {{ donacion.estado|capfirst }}</p>
                                 <p> <b>Fecha de donación:</b> {{ donacion.fecha_donacion }}</p>
 
                                 {% if donacion.fecha_aceptacion %}
@@ -41,13 +41,13 @@ Donaciones
                                 {% endif %}
 
                                 {% if donacion.estado == "Iniciada" and donacion.donador == request.user %}
-                                    <a class="btn btn-primary" href="{% url 'donacion:modificar' donacion.id %}">Modificar</a>
-                                    <a class="btn btn-danger" href="{% url 'donacion:cancelar' donacion.id %}">Cancelar</a>
+                                    <a type="submit" class="btn btn-primary" href="{% url 'donacion:modificar' donacion.id %}">Modificar</a>
+                                    <a type="submit" class="btn btn-danger" href="{% url 'donacion:cancelar' donacion.id %}">Cancelar</a>
                                 {% endif %}
 
                                 {% if donacion.estado == "Iniciada" and donacion.receptor == request.user %}
-                                    <a class="btn btn-primary" href="{% url 'donacion:aceptar' donacion.id %}">Aceptar</a>
-                                    <a class="btn btn-danger" href="{% url 'donacion:rechazar' donacion.id %}">Rechazar</a>
+                                    <a type="submit" class="btn btn-primary" href="{% url 'donacion:aceptar' donacion.id %}">Aceptar</a>
+                                    <a type="submit" class="btn btn-danger" href="{% url 'donacion:rechazar' donacion.id %}">Rechazar</a>
                                 {% endif %}							
                             </div>
                         </div>
@@ -55,7 +55,7 @@ Donaciones
 
                     {% if not donacion %}
                         <div>
-                            <p>No haz realizado ninguna donacion, te invitamos a hacerlo!!</p>
+                            <p>No has realizado ninguna donacion, te invitamos a hacerlo!!</p>
                         </div>
                     {% endif %} 
                 </a>

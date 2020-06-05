@@ -16,8 +16,8 @@ Inicio
 		    <div class="card-body">
 		      <div class="row no-gutters align-items-center">
 		        <div class="col mr-2">
-		          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-		          <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+		          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Donaciones Iniciadas</div>
+		          <div class="h5 mb-0 font-weight-bold text-gray-800">{{ numero_donaciones_iniciadas }}</div>
 		        </div>
 		        <div class="col-auto">
 		          <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -32,8 +32,8 @@ Inicio
 		    <div class="card-body">
 		      <div class="row no-gutters align-items-center">
 		        <div class="col mr-2">
-		          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-		          <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+		          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Intercambios Iniciados</div>
+		          <div class="h5 mb-0 font-weight-bold text-gray-800">{{ numero_intercambios_iniciados }}</div>
 		        </div>
 		        <div class="col-auto">
 		          <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -48,8 +48,8 @@ Inicio
 		    <div class="card-body">
 		      <div class="row no-gutters align-items-center">
 		        <div class="col mr-2">
-		          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-		          <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+		          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Intercambios finalizados</div>
+		          <div class="h5 mb-0 font-weight-bold text-gray-800">{{ numero_intercambios_aceptados }}</div>
 		        </div>
 		        <div class="col-auto">
 		          <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -64,8 +64,8 @@ Inicio
 		    <div class="card-body">
 		      <div class="row no-gutters align-items-center">
 		        <div class="col mr-2">
-		          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-		          <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+		          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Intercambios rechazados</div>
+		          <div class="h5 mb-0 font-weight-bold text-gray-800">{{ numero_intercambios_rechazados }}</div>
 		        </div>
 		        <div class="col-auto">
 		          <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -79,7 +79,7 @@ Inicio
 <div class="container-fluid">
 	<div class="row"> 
 		{% for producto in productos %}
-			{% if not producto.dueno == request.user %}
+			{% if not producto.dueno == request.user and producto.estado == "Vigente" %}
 				<div class="col-lg-12 mb-4">
 					<div class="card border-bottom-info shadow mb-4 h-100 py-1">
 					<!-- Card Header - Dropdown -->
@@ -89,13 +89,12 @@ Inicio
 						<div class="collapse show" id="{{ producto.id }}">
 						<!-- Card Body -->
 							<div class="card-body">
-								<img src="{{producto.foto.url}}" style="width: 200px;">
+								<img src="{{producto.foto.url}}" style="width: 200px; border-radius: 8px; height: 200px;">
 								<hr class="sidebar-divider">
 								<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
 								<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
 								<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
-								<p> <b>Dueño:</b>  {{ producto.dueno|capfirst }} </p>
-								<a class="btn btn-success" href="{% url 'intercambio:registrar_desde_producto' producto.id %}">Solicitar intercambio</a>
+								<a type="submit" class="btn btn-success" href="{% url 'intercambio:registrar_desde_producto' producto.id %}">Solicitar intercambio</a>
 							</div>
 						</div>
 					</div>	

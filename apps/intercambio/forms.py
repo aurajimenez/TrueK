@@ -48,16 +48,6 @@ class RegistrarIntercambioDesdeProductoForm(forms.ModelForm):
 
 class ModificarIntercambioForm(forms.ModelForm):
 
-	def clean(self):
-		cleaned_data = super().clean()
-		oferente = cleaned_data.get("oferente")
-		receptor = cleaned_data.get("receptor")
-
-		if oferente == receptor:
-			mensaje = "El receptor no puede ser el mismo oferente"
-			self.add_error('oferente', mensaje)
-			self.add_error('receptor', mensaje)
-
 	class Meta:
 		model = Intercambio
 		fields = ('producto_del_oferente', 'producto_del_receptor',)

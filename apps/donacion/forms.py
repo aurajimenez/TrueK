@@ -19,8 +19,7 @@ class RegistrarDonacionForm(forms.ModelForm):
 			mensaje = "El receptor no puede ser el mismo donador"
 			self.add_error('donador', mensaje)
 			self.add_error('receptor', mensaje)
-
-
+			
 	class Meta:
 		model = Donacion
 		fields = ('objecto_servicio', 'receptor',)

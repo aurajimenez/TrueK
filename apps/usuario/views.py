@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Usuario
 from apps.producto.models import Producto
 from apps.intercambio.models import Intercambio
+from apps.donacion.models import Donacion
 from .forms import RegistrarUsuarioForm, ModificarUsuarioForm, CambiarContrasenaForm
 
 @login_required
@@ -17,7 +18,9 @@ def Registrar(request):
         form = RegistrarUsuarioForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, "El usuario ha sido registrado correctamente")
             return redirect('usuario:listar')
+        messages.error(request, "El usuario no pudo ser registrado")
     else:
         form = RegistrarUsuarioForm()
     return render(request, "registrar_usuario.html", {'form': form})
@@ -67,7 +70,19 @@ def Logout(request):
 @login_required
 def Inicio(request):
     productos = Producto.objects.all()
-    return render(request, "inicio.html", {'productos':productos})
+    numero_intercambios_iniciados = Intercambio.objects.all().count()
+    numero_donaciones_iniciadas = Donacion.objects.all().count()
+    numero_intercambios_rechazados = Intercambio.objects.filter(estado="Rechazado").count()
+    numero_intercambios_aceptados = Intercambio.objects.filter(estado="Aceptado").count()
+
+    contexto = {
+    'productos': productos,
+    'numero_intercambios_iniciados': numero_intercambios_iniciados,
+    'numero_donaciones_iniciadas': numero_donaciones_iniciadas,
+    'numero_intercambios_rechazados': numero_intercambios_rechazados,
+    'numero_intercambios_aceptados': numero_intercambios_aceptados,
+    }
+    return render(request, "inicio.html", contexto)
 
 @login_required
 def Perfil(request, usuario_id):

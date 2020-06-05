@@ -29,7 +29,7 @@
                   <img src="{% if usuario.photo %} {{ usuario.photo.url }}
                   {% else %}
                             {% static 'media/th2.png' %}
-                  {% endif %}" style="width: 150px;">
+                  {% endif %}" style="width: 150px; border-radius: 8px; height: 150px;" >
 									<hr>
 									<p> <b>Teléfono:</b> {{ usuario.telefono}} </p>
 									<p> <b>Localización:</b> {{ usuario.localizacion}} </p>

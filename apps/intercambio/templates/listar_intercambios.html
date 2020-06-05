@@ -30,21 +30,22 @@ Intercambios
             </div>
             <!-- Card Body -->
             <div class="card-body">
-            <p> <b>Oferente:</b> {{ intercambio.oferente }}</p>
-            <p> <b>Producto 1:</b> {{ intercambio.producto_del_oferente }}</p>	<p> <b>Producto 2:</b> {{ intercambio.producto_del_receptor }}</p>
-            <p> <b>Receptor:</b> {{ intercambio.receptor }}</p>
-            <p> <b>Estado del intercambio:</b> {{ intercambio.estado }}</p>
+            <p> <b>Oferente:</b> {{ intercambio.oferente|capfirst }}</p>
+            <p> <b>Producto 1:</b> {{ intercambio.producto_del_oferente|capfirst }}</p>	
+            <p> <b>Producto 2:</b> {{ intercambio.producto_del_receptor|capfirst }}</p>
+            <p> <b>Receptor:</b> {{ intercambio.receptor|capfirst }}</p>
+            <p> <b>Estado del intercambio:</b> {{ intercambio.estado|capfirst }}</p>
             <p> <b>Inicio del intercambio:</b> {{ intercambio.fecha_solicitud_intercambio }}</p>
             {% if intercambio.fecha_aceptacion_intercambio %}
             <p> <b>Fecha de aceptación/recepción del intercambio:</b> {{ intercambio.fecha_aceptacion_intercambio }}</p>
             {% endif %}	
             {% if intercambio.estado == "Iniciado" and intercambio.receptor == request.user %}
-            <a class="btn btn-primary" href="{% url 'intercambio:aceptar' intercambio.id %}">Aceptar</a>
-            <a class="btn btn-danger" href="{% url 'intercambio:rechazar' intercambio.id %}">Rechazar</a>
+            <a type="submit" class="btn btn-primary" href="{% url 'intercambio:aceptar' intercambio.id %}">Aceptar</a>
+            <a type="submit" class="btn btn-danger" href="{% url 'intercambio:rechazar' intercambio.id %}">Rechazar</a>
             {% endif %}	
             {% if intercambio.oferente == request.user and intercambio.estado == "Iniciado" %}
-            <a class="btn btn-primary" href="{% url 'intercambio:modificar' intercambio.id %}">Modificar</a>
-            <a class="btn btn-danger" href="{% url 'intercambio:cancelar' intercambio.id %}">Cancelar</a>
+            <a type="submit" class="btn btn-primary" href="{% url 'intercambio:modificar' intercambio.id %}">Modificar</a>
+            <a type="submit" class="btn btn-danger" href="{% url 'intercambio:cancelar' intercambio.id %}">Cancelar</a>
             {% endif %}							            			            
             </div>
             </div>
