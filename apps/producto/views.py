@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .forms import RegistrarProductoForm, ModificarProductoForm
 from .models import Producto
@@ -12,6 +13,7 @@ def Registrar(request):
 			producto = form.save(commit=False)
 			producto.dueno = request.user
 			producto.save()
+			messages.success(request, "El producto ha sido registrado correctamente")
 			return redirect('producto:listar')
 	else:
 		form = RegistrarProductoForm()
@@ -36,14 +38,17 @@ def Listar(request):
 
 @login_required
 def Perfil(request, producto_id):
-    producto = Producto.objects.get(id=producto_id)
-    nombre = producto.nombre
-    descripcion = producto.descripcion
-    etiquetas = producto.etiquetas
-    estado = producto.estado
+	try:
+		producto = Producto.objects.get(id=producto_id)
+		nombre = producto.nombre
+		descripcion = producto.descripcion
+		etiquetas = producto.etiquetas
+		estado = producto.estado
 
-    contexto = {
-    'producto':producto,
-    }
-
-    return render(request, "perfil_producto.html", {'producto':producto})
+		contexto = {
+		'producto':producto,
+		}
+	except Producto.DoesNotExist:
+		messages.error(request, "El producto no existe")
+		return redirect('producto:listar')
+	return render(request, "perfil_producto.html", {'producto':producto})

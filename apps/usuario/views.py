@@ -50,6 +50,7 @@ def Login(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
+            print("LLega acar")
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username} ")
@@ -60,7 +61,7 @@ def Login(request):
             messages.error(request, "Invalid username or password.")
     else:
         form = AuthenticationForm()
-    return render(request, "base_login.html", {'form': form})
+    return render(request, "login.html", {'form': form})
 
 @login_required
 def Logout(request):

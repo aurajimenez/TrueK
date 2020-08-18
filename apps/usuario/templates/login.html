@@ -21,11 +21,11 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Bienvenid@!</h1>
                   </div>
                   <form class="user" method="POST">{% csrf_token %}
-                    <div class="form-group">
-                      <input type="username" class="form-control form-control-user" placeholder="Enter username...">{{form.username}}
+                    <div class="form-group">{{form.username}}
+                      <input type="username" class="form-control form-control-user" placeholder="Enter username...">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">{{form.password}}
