@@ -93,6 +93,7 @@ def Perfil(request, usuario_id):
     telefono = usuario.telefono
     localizacion = usuario.localizacion
     email = usuario.email
+    photo = usuario.photo
 
     contexto = {
     'usuario':usuario,
@@ -101,6 +102,7 @@ def Perfil(request, usuario_id):
     'telefono': telefono,
     'localizacion':localizacion,
     'email':email,
+    'photo':photo,
     }
 
     return render(request, "perfil_usuario.html", {'usuario':usuario})

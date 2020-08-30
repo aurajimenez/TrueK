@@ -1,21 +1,18 @@
 {% extends "index.html" %}
 
 {% block title %}
-Donaciones 
+    Donaciones 
 {% endblock %}
 
 {% block contenido %}
     <div class="container">
         <div class="row">
-
-            
-
             {% for donacion in donaciones %}
-            {% if not donacion and user.request == donacion.donador %}
-                <div class="container">
-                    <p>No haz realizado donaciones, te invitamos a hacerlo!!</p>
-                </div>
-            {% endif %}  
+                {% if not donacion and user.request == donacion.donador %}
+                    <div class="container">
+                        <p>No haz realizado donaciones, te invitamos a hacerlo!!</p>
+                    </div>
+                {% endif %}  
                 <a href="{% url 'donacion:perfil' donacion.id %}"> 
                     <div class="col-lg-6 mb-4">
                         <div class="card shadow mb-4">
