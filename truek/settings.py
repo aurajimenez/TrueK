@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.donacion',
     'apps.producto',    
     'apps.intercambio',
+    'apps.page',
 ]
 
 MIDDLEWARE = [

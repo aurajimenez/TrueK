@@ -24,4 +24,5 @@ urlpatterns = [
     path('intercambio/', include('apps.intercambio.urls', namespace="intercambio")),
     path('usuario/', include('apps.usuario.urls', namespace="usuario")),
     path('producto/', include('apps.producto.urls', namespace="producto")),
+    path('page/', include('apps.page.urls', namespace="page")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
