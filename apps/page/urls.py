@@ -7,5 +7,6 @@ urlpatterns = [
 
     path('inicio', views.Inicio, name='inicio'),	
     path('preguntas_frecuentes', views.Preguntas_Frecuentes, name='preguntas_frecuentes'),
+    path('pie-chart/', views.pie_chart, name='pie-chart'),
 
 ]
