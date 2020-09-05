@@ -121,6 +121,3 @@ def Cambiar_contrasena(request, usuario_id):
     else:
         form = CambiarContrasenaForm()
     return render(request, "cambiar_contrasena.html", {'usuario':usuario})
-
-def Preguntas_Frecuentes(request):
-    return render(request, "preguntas_frecuentes.html")
