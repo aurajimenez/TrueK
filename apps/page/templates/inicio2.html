@@ -31,17 +31,12 @@
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-    <!-- Sidebar -->
-
-    <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
       <div id="content">
-    {% block barra_usuario %}
+      {% block barra_usuario %}
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-primary bg-primary topbar mb-4 static-top shadow">
 
@@ -61,7 +56,7 @@
                 <!--span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ request.user|capfirst }}</span>
                 <img class="img-profile rounded-circle" src="{{ usuario.photo.url }}">-->
               </a>
-              <!-- Dropdown - User Information -->
+              <!-- Dropdown - User Information >
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -76,11 +71,9 @@
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
-              </div>
+              </div-->
             </li>
-
           </ul>
-
         </nav>
         <!-- End of Topbar -->
         {% endblock barra_usuario %}
@@ -89,7 +82,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <div class="row"> 
-  <!-- Intercambios realizados -->
+    <!-- Intercambios realizados -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
@@ -110,11 +103,11 @@
 
   <!-- Donaciones realizadas -->
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-success shadow h-100 py-2">
+      <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Donaciones realizadas
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Donaciones realizadas
               </div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ numero_donaciones_iniciadas }}
                 </div>
@@ -129,11 +122,11 @@
 
   <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-danger shadow h-100 py-2">
+      <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Usuarios registrados
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Usuarios registrados
               </div>
               <div class="h5 mb-0 font-weight-bold text-gray-800">{{ usuarios }}
               </div>
@@ -148,11 +141,11 @@
 
   <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Número de productos
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Número de productos
               </div>
               <div class="h5 mb-0 font-weight-bold text-gray-800">{{ numero_productos }}
               </div>
@@ -169,46 +162,45 @@
 
 <!-- Page Heading -->
 <div class="container-fluid">
-<div class="row"> 
-<div class="col-xl-4 col-lg-4">
-<div class="card shadow mb-4">
-<!-- Card Body -->
-<div class="card-body">
-<h2> Con TRUEK puedes:</h2>
-<ul>
-<li>Ofrece y publica un objeto o servicio que quiere intercambiar</li>
-<li>Busca objetos/servicios que quieran obtener y hacer una proposición para algún objeto/servicio propio y espera una respuesta</li>
-<li>Solicite donaciones de objetos/servicios.</li>
-<li>Hacer donaciones de objetos/servicios.</li>
-</ul>
-<div align="center">
-<a href="registrarme.html" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Registrate</a>
-<a href="{% url 'usuario:login' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Inicia Sesión</a>
-</div>
-</div>
-</div>
-</div>
+  <div class="row"> 
+    <div class="col-xl-4 col-lg-4">
+      <div class="card shadow mb-4">
+        <!-- Card Body -->
+        <div class="card-body">
+          <h2> Con TRUEK puedes:</h2>
+          <ul>
+          <li>Ofrece y publica un objeto o servicio que quiere intercambiar</li>
+          <li>Busca objetos/servicios que quieran obtener y hacer una proposición para algún objeto/servicio propio y espera una respuesta</li>
+          <li>Solicite donaciones de objetos/servicios.</li>
+          <li>Hacer donaciones de objetos/servicios.</li>
+          </ul>
+        <div align="center">
+          <a href="{% url 'usuario:registrarme' %}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Registrate</a>
+          <a href="{% url 'usuario:login' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Inicia Sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-{% for producto in productos %}
-{% if not producto.dueno == request.user and producto.estado == "Vigente" %}
-<div class="col-lg-4 mb-4">
-<div class="card border-bottom-info shadow mb-4  py-1">
-<!-- Card Header - Dropdown -->
-<!-- Card Body -->
-<div class="card-body">
-<img src="{{producto.foto.url}}" style="width: 200px; border-radius: 8px; height: 200px;">
-<hr class="sidebar-divider">
-<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
-<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
-<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
-</div>
-</div>	
-</div>
-{% endif %}
-{% endfor %}
-
-</div>
-</div>
+      {% for producto in productos %}
+        {% if not producto.dueno == request.user and producto.estado == "Vigente" %}
+          <div class="col-lg-4 mb-4">
+            <div class="card border-bottom-info shadow mb-4  py-1">
+              <!-- Card Header - Dropdown -->
+              <!-- Card Body -->
+              <div class="card-body">
+                <img src="{{producto.foto.url}}" style="width: 200px; border-radius: 8px; height: 200px;">
+                  <hr class="sidebar-divider">
+                  <p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
+                  <p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
+                  <p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
+              </div>
+            </div>	
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 <!-- End of Main Content -->

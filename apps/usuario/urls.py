@@ -6,6 +6,7 @@ app_name = 'usuario'
 urlpatterns = [
 	
 	path('registrar', views.Registrar, name="registrar"),
+	path('registrarme', views.RegistrarMe, name="registrarme"),
     path('modificar/<int:usuario_id>', views.Modificar, name='modificar'),
 	path('listar', views.Listar, name="listar"),
 	path('login', views.Login, name="login"),

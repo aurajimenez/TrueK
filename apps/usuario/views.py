@@ -10,7 +10,7 @@ from .models import Usuario
 from apps.producto.models import Producto
 from apps.intercambio.models import Intercambio
 from apps.donacion.models import Donacion
-from .forms import RegistrarUsuarioForm, ModificarUsuarioForm, CambiarContrasenaForm
+from .forms import RegistrarUsuarioForm, ModificarUsuarioForm, CambiarContrasenaForm, RegistrarMeForm
 
 @login_required
 def Registrar(request):
@@ -24,6 +24,21 @@ def Registrar(request):
     else:
         form = RegistrarUsuarioForm()
     return render(request, "registrar_usuario.html", {'form': form})
+
+def RegistrarMe(request):
+    if request.method == 'POST':
+        form = RegistrarMeForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            login(request, user)
+            messages.success(request, "El usuario ha sido registrado correctamente")
+            return redirect('usuario:inicio')
+        messages.error(request, "El usuario no pudo ser registrado")
+    else:
+        form = RegistrarMeForm()
+    return render(request, "registrarme.html", {'form': form})
 
 @login_required
 def Modificar(request, usuario_id):
