@@ -32,6 +32,7 @@
 						<p> <b>Localización:</b> {{ usuario.localizacion }} </p>
 						<p> <b>Correo electrónico:</b> {{ usuario.email }} </p>
 					</div>
+          <a type="submit" class="btn btn-primary" href="{% url 'usuario:modificar' user.id %}">Modificar perfil</a> 
 				</div>
    </div>
 {% endblock contenido %}
