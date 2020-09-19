@@ -94,7 +94,12 @@ Inicio
 								<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
 								<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
 								<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
-								<a type="submit" class="btn btn-success" href="{% url 'intercambio:registrar_desde_producto' producto.id %}">Solicitar intercambio</a>
+								{% if not mis_productos == 0 %}
+									<a type="submit" class="btn btn-success" href="{% url 'intercambio:registrar_desde_producto' producto.id %}">Solicitar intercambio</a>
+								{% endif %}
+								{% if mis_productos == 0 %}
+									<p>No tienes productos disponibles para solicitar intercambios</p>
+								{% endif %}
 							</div>
 						</div>
 					</div>	

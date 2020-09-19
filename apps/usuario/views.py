@@ -86,6 +86,7 @@ def Logout(request):
 @login_required
 def Inicio(request):
     productos = Producto.objects.all()
+    mis_productos = Producto.objects.filter(dueno=request.user).filter(estado="Vigente").count()
     numero_intercambios_iniciados = Intercambio.objects.all().count()
     numero_donaciones_iniciadas = Donacion.objects.all().count()
     numero_intercambios_rechazados = Intercambio.objects.filter(estado="Rechazado").count()
@@ -93,6 +94,7 @@ def Inicio(request):
 
     contexto = {
     'productos': productos,
+    'mis_productos': mis_productos,
     'numero_intercambios_iniciados': numero_intercambios_iniciados,
     'numero_donaciones_iniciadas': numero_donaciones_iniciadas,
     'numero_intercambios_rechazados': numero_intercambios_rechazados,
