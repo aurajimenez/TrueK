@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #Ruta de referencia del proyecto
@@ -20,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #Ruta de 
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'zi^lbxy7qoqr%9z@chassbfnc=lya_8g2593$+bx4z^zws+(97'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
+    'social_django',
 
     'bootstrap4',
-
 
     'apps.usuario',
     'apps.donacion',
@@ -140,3 +143,12 @@ MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'usuario.usuario'
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',)
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_TWITTER_KEY = str(os.getenv('SOCIAL_AUTH_TWITTER_KEY'))
+SOCIAL_AUTH_TWITTER_SECRET = str(os.getenv('SOCIAL_AUTH_TWITTER_SECRET'))

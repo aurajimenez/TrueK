@@ -6,3 +6,4 @@
 !**/migrations/__init__.py
 media/*
 secrets.json
+.env
