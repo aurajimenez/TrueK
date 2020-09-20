@@ -7,3 +7,5 @@
 media/*
 secrets.json
 .env
+truek/settings.py
+settings.py
