@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('social.apps.django_app.urls', namespace='social')),
     path('admin/', admin.site.urls),
     path('donacion/', include('apps.donacion.urls', namespace="donacion")),
     path('intercambio/', include('apps.intercambio.urls', namespace="intercambio")),
