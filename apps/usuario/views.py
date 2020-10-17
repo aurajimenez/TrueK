@@ -131,10 +131,14 @@ def Cambiar_contrasena(request, usuario_id):
     if request.method == "POST":
         form = CambiarContrasenaForm(request.POST, instance=usuario)
         if form.is_valid():
-            usuario = form.save(commit=False)
-            usuario.password = password
-            usuario.update()
+            password = form.cleaned_data['password']
+            usuario.set_password(password)
+            usuario.save()
             return redirect('usuario:listar')
     else:
         form = CambiarContrasenaForm()
-    return render(request, "cambiar_contrasena.html", {'usuario':usuario})
+        contexto={
+        'form':form,
+        'usuario':usuario
+        }
+    return render(request, "cambiar_contrasena.html", contexto)
