@@ -1,52 +1,52 @@
 {% extends "index.html" %}
-{% load static %}
-{% block title %}
-Productos 
-{% endblock %}
 
+{% load static %}
+
+{% block title %}
+  Productos 
+{% endblock title %}
 
 {% block contenido %}
   <div class="container">
-        <div class="row"> 
-          
-	{% for producto in productos %}  
-  {% if not producto and user.request == producto.dueno %}
-            <div class="container">
-                <p>No tienes productos registrados, te invitamos a hacerlo!!</p>
-            </div>
-            {% endif %}  
-    <a href="{% url 'producto:perfil' producto.id %}">       
-     <div class="col-lg-6 mb-4" >
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">{{ producto.nombre|upper }}</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-         
-                  <img src="{% if producto.foto.url %} {{ producto.foto.url }}
-                  {% else %}
-                            {% static 'media/th2.png' %}
-                  {% endif %}" style="width: 210px; border-radius: 8px; height: 210px;">
-                  <hr>
-  							<p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
-							<p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
-							<p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
+    <div class="row"> 
+      {% for producto in productos %}  
+        {% if not producto and user.request == producto.dueno %}
+          <div class="container">
+            <p>No tienes productos registrados, te invitamos a hacerlo!!</p>
+          </div>
+        {% endif %}
 
-              <a type="submit" class="btn btn-success" href="{% url 'donacion:registrar_desde_producto' producto.id%}">Donar</a>
-							<a type="submit" class="btn btn-primary" href="{% url 'producto:modificar' producto.id %}">Modificar</a>
-                
+        <a href="{% url 'producto:perfil' producto.id %}">       
+          <div class="col-lg-6 mb-4" >
+            <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">{{ producto.nombre|upper }}</h6>
+                <div class="dropdown no-arrow">
+                  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                  </a>
                 </div>
               </div>
+
+              <!-- Card Body -->
+              <div class="card-body">
+                <img src="{% if producto.foto.url %} {{ producto.foto.url }}
+                          {% else %}
+                          {% static 'media/th2.png' %}
+                          {% endif %}" style="width: 210px; border-radius: 8px; height: 210px;">
+                  <hr>
+                  <p> <b>Descripción:</b> {{ producto.descripcion|capfirst }} </p>
+                  <p> <b>Etiquetas:</b> {{ producto.etiquetas|capfirst }} </p>
+                  <p> <b>Estado:</b> {{ producto.estado|capfirst }} </p>
+
+                  <a type="submit" class="btn btn-success" href="{% url 'donacion:registrar_desde_producto' producto.id%}">Donar</a>
+                  <a type="submit" class="btn btn-primary" href="{% url 'producto:modificar' producto.id %}">Modificar</a>
+              </div>
             </div>
-</a>	
-{% endfor %}
-</div>
-</div>
+          </div>
+        </a>	
+      {% endfor %}
+    </div>
+  </div>
 {% endblock contenido %}

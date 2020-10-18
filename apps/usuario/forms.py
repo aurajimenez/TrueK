@@ -31,7 +31,7 @@ class LoginUsarioForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.TextInput)
 
 class CambiarContrasenaForm(forms.ModelForm):
-	password = forms.CharField(widget=forms.PasswordInput)
+	password = forms.CharField(widget=forms.PasswordInput, label="Nueva contraseña")
 
 	class Meta:
 		model = Usuario

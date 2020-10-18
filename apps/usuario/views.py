@@ -134,7 +134,7 @@ def Cambiar_contrasena(request, usuario_id):
             password = form.cleaned_data['password']
             usuario.set_password(password)
             usuario.save()
-            return redirect('usuario:listar')
+            return redirect('usuario:inicio')
     else:
         form = CambiarContrasenaForm()
         contexto={

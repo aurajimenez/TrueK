@@ -1,14 +1,17 @@
 {% extends "index.html" %}
 
+{% load static %}
+
 {% block title %}
-Cambiar contraseña
-{% endblock %}
+  Cambiar contraseña
+{% endblock title %}
 
 {% block barra_busqueda %}
 
 {% endblock barra_busqueda %}
 
-{% block contenido %}    
+{% block contenido %} 
+  
   <div class="col-lg-6 mb-4">
     <div class="card shadow mb-4">
     <!-- Card Header - Dropdown -->
@@ -24,7 +27,7 @@ Cambiar contraseña
       <div class="card-body">
         <form action="#" method="post" enctype="multipart/form-data">{% csrf_token %}
           <table>{{ form.as_table  }}</table>
-          <button type="submit" class="btn btn-primary">Enviar</button> 
+          <button type="submit" class="btn btn-primary">Cambiar contraseña</button> 
         </form>
       </div>
     </div>
